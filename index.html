@@ -1,143 +1,154 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Organizer Avanzato</title>
-<style>
-  /* ...base e stile come nel template precedente... */
-  /* Aggiunge sezione letture con tabella */
-  #reads table { width:100%; border-collapse: collapse; }
-  #reads th, #reads td { border:1px solid #ddd; padding:6px; text-align:left; }
-  #reads select, #reads input[type="number"]{width:100%;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notion-style Organizer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    textarea, input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    .day {
+      padding: 10px;
+      background: #e8e8e8;
+      text-align: center;
+      border-radius: 6px;
+    }
+    .day.today {
+      background: #007aff;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-<header>Organizer Studio & Lavoro</header>
-<main>
-  <!-- To-Do List -->
-  <section id="todo">
-    <h2>To-Do</h2>
-    <input id="todo-text" placeholder="Attività...">
-    <select id="todo-priority"><option value="low">Bassa</option><option value="medium" selected>Media</option><option value="high">Alta</option></select>
-    <button id="addTodo">Aggiungi</button>
-    <ul id="todo-list"></ul>
-  </section>
-  <!-- Calendario -->
-  <section id="calendar">
-    <h2>Calendario</h2>
-    <div id="calendar-container"></div>
-  </section>
-  <!-- Progetti -->
-  <section id="projects">
-    <h2>Progetti</h2>
-    <input id="proj-title" placeholder="Nome progetto..."><button id="addProj">Aggiungi</button>
-    <ul id="proj-list"></ul>
-  </section>
-  <!-- Letture quotidiane -->
-  <section id="reads">
-    <h2>Letture giornaliere</h2>
-    <table>
-      <tr><th>Libro</th><th>Stato</th><th>Valutazione</th></tr>
-    </table>
-    <input id="read-title" placeholder="Titolo">
-    <select id="read-status"><option value="in corso">In corso</option><option value="iniziato">Iniziato</option><option value="completato">Completato</option></select>
-    <input type="number" id="read-rating" placeholder="Stelle (1‑5)" min="1" max="5">
-    <button id="addRead">Aggiungi lettura</button>
-  </section>
-  <!-- Note -->
-  <section id="notes">
-    <h2>Note rapide</h2>
-    <textarea id="notes-text"></textarea>
-  </section>
-</main>
-<footer>Creato da te – Organizza al meglio!</footer>
-<script>
-// To-Do
-let todos = JSON.parse(localStorage.getItem('todos'))||[];
-function renderTodos(){
-  const ul=document.getElementById('todo-list'); ul.innerHTML='';
-  todos.forEach((t,i)=>{
-    const li=document.createElement('li');
-    li.textContent=`[${t.priority}] ${t.text}`;
-    if(t.completed) li.style.textDecoration='line-through';
-    li.onclick=()=>{t.completed=!t.completed; localStorage.setItem('todos',JSON.stringify(todos)); renderTodos();};
-    ul.appendChild(li);
-  });
-}
-document.getElementById('addTodo').onclick=()=>{
-  const txt=document.getElementById('todo-text').value.trim();
-  const pr=document.getElementById('todo-priority').value;
-  if(txt) { todos.push({text:txt,priority:pr,completed:false}); localStorage.setItem('todos',JSON.stringify(todos)); renderTodos(); document.getElementById('todo-text').value=''; }
-};
-renderTodos();
+  <header>🧠 Notion-style Organizer</header>
+  <div class="container">
 
-// Calendar semplice
-function drawCalendar(){
-  const cont=document.getElementById('calendar-container');
-  const d=new Date(), m=d.getMonth(), y=d.getFullYear();
-  let html=`<table><tr>`;
-  ['Do','Lu','Ma','Me','Gi','Ve','Sa'].forEach(day=>html+=`<th>${day}</th>`);
-  html+=`</tr><tr>`;
-  const first=new Date(y,m,1).getDay();
-  for(let i=0;i<first;i++) html+=`<td></td>`;
-  const days=new Date(y,m+1,0).getDate();
-  for(let dnum=1; dnum<=days; dnum++){
-    const isToday=(dnum===d.getDate());
-    html+=`<td class="${isToday?'today':''}">${dnum}</td>`;
-    if((first+dnum)%7===0 && dnum<days) html+='</tr><tr>';
-  }
-  html+='</tr></table>';
-  cont.innerHTML=html;
-}
-drawCalendar();
+    <div class="card">
+      <h2>📅 Calendario</h2>
+      <div class="calendar" id="calendar"></div>
+    </div>
 
-// Projects
-let projects=JSON.parse(localStorage.getItem('projects'))||[];
-function renderProjects(){
-  const ul=document.getElementById('proj-list'); ul.innerHTML='';
-  projects.forEach((p,i)=>{
-    const li=document.createElement('li');
-    li.innerHTML=`<strong>${p.title}</strong>
-      <div><input type="range" min="0" max="100" value="${p.progress}" data-index="${i}" class="prog"></div>
-      <span>${p.progress}%</span>`;
-    ul.appendChild(li);
-  });
-  document.querySelectorAll('.prog').forEach(el=>{
-    el.oninput=e=>{
-      const idx=e.target.dataset.index;
-      projects[idx].progress=e.target.value;
-      localStorage.setItem('projects',JSON.stringify(projects)); renderProjects();
-    };
-  });
-}
-document.getElementById('addProj').onclick=()=>{
-  const t=document.getElementById('proj-title').value.trim();
-  if(t){projects.push({title:t,progress:0}); localStorage.setItem('projects',JSON.stringify(projects)); renderProjects(); document.getElementById('proj-title').value='';}
-};
-renderProjects();
+    <div class="card">
+      <h2>📚 Lettura Quotidiana</h2>
+      <input type="text" placeholder="Titolo libro" id="bookTitle" />
+      <select id="bookStatus">
+        <option value="iniziato">Iniziato</option>
+        <option value="in corso">In Corso</option>
+        <option value="completato">Completato</option>
+      </select>
+      <input type="number" placeholder="Valutazione 1-5" min="1" max="5" id="bookRating" />
+      <button onclick="addBook()">Aggiungi</button>
+      <ul id="bookList"></ul>
+    </div>
 
-// Letture
-let reads=JSON.parse(localStorage.getItem('reads'))||[];
-function renderReads(){
-  const tbl=document.querySelector('#reads table'); tbl.innerHTML='<tr><th>Libro</th><th>Stato</th><th>Valutazione</th></tr>';
-  reads.forEach(r=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${r.title}</td><td>${r.status}</td><td>${'★'.repeat(r.rating)}</td>`;
-    tbl.appendChild(tr);
-  });
-}
-document.getElementById('addRead').onclick=()=>{
-  const t=document.getElementById('read-title').value.trim();
-  const st=document.getElementById('read-status').value;
-  const rt=parseInt(document.getElementById('read-rating').value)||1;
-  if(t){reads.push({title:t,status:st,rating:rt}); localStorage.setItem('reads',JSON.stringify(reads)); renderReads(); document.getElementById('read-title').value='';}
-};
-renderReads();
+    <div class="card">
+      <h2>✅ Task Giornalieri</h2>
+      <input type="text" id="taskInput" placeholder="Nuovo task..." />
+      <button onclick="addTask()">Aggiungi Task</button>
+      <ul id="taskList"></ul>
+    </div>
 
-// Notes
-const notesArea=document.getElementById('notes-text');
-notesArea.value=localStorage.getItem('notes')||'';
-notesArea.oninput=()=>localStorage.setItem('notes',notesArea.value);
-</script>
+    <div class="card">
+      <h2>🗒️ Note</h2>
+      <textarea rows="10" placeholder="Scrivi una nota..." oninput="saveNotes(this.value)"></textarea>
+    </div>
+
+  </div>
+
+  <script>
+    function drawCalendar() {
+      const today = new Date();
+      const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+      const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
+      const calendar = document.getElementById('calendar');
+      calendar.innerHTML = '';
+      for (let i = 0; i < firstDay; i++) {
+        calendar.innerHTML += '<div></div>';
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const isToday = d === today.getDate();
+        const div = document.createElement('div');
+        div.className = 'day' + (isToday ? ' today' : '');
+        div.textContent = d;
+        calendar.appendChild(div);
+      }
+    }
+    drawCalendar();
+
+    function addBook() {
+      const title = document.getElementById('bookTitle').value;
+      const status = document.getElementById('bookStatus').value;
+      const rating = document.getElementById('bookRating').value;
+      if (title && rating) {
+        const li = document.createElement('li');
+        li.textContent = `${title} - ${status} - ⭐${rating}`;
+        document.getElementById('bookList').appendChild(li);
+      }
+    }
+
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      if (input.value.trim()) {
+        const li = document.createElement('li');
+        li.textContent = input.value;
+        li.onclick = () => li.classList.toggle('done');
+        document.getElementById('taskList').appendChild(li);
+        input.value = '';
+      }
+    }
+
+    function saveNotes(val) {
+      localStorage.setItem('notes', val);
+    }
+
+    document.querySelector('textarea').value = localStorage.getItem('notes') || '';
+  </script>
 </body>
 </html>
