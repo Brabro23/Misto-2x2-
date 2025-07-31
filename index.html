@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Organizza Studio & Lavoro</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0; background: #f0f4f8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 20px;
+    }
+    section {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+    /* To-Do list styles */
+    #todo-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #todo-list li {
+      padding: 10px 8px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #todo-list li.completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+    #todo-list button {
+      background: none;
+      border: none;
+      color: #e74c3c;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #todo-list input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 2px solid #4a90e2;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    /* Notes */
+    #notes textarea {
+      width: 100%;
+      height: 150px;
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #4a90e2;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    /* Resources */
+    #resources ul {
+      list-style: disc inside;
+      padding-left: 10px;
+    }
+    #resources a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+    #resources a:hover {
+      text-decoration: underline;
+    }
+    /* Calendar */
+    #calendar {
+      text-align: center;
+      font-family: monospace;
+      font-size: 1.1rem;
+      padding: 10px;
+      background: #eaf3ff;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #777;
+      background: #f8f9fa;
+      margin-top: auto;
+    }
+    /* Buttons */
+    button.add-btn {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    button.add-btn:hover {
+      background: #357abd;
+    }
+  </style>
+</head>
+<body>
+  <header>Organizza Studio & Lavoro</header>
+  <main>
+
+    <!-- To-Do List -->
+    <section id="todo-list">
+      <h2>To-Do List</h2>
+      <input type="text" id="todo-input" placeholder="Aggiungi nuova attività..." />
+      <button class="add-btn" onclick="addTodo()">Aggiungi</button>
+      <ul id="todos"></ul>
+    </section>
+
+    <!-- Calendar (mese corrente semplice) -->
+    <section id="calendar">
+      <h2>Calendario</h2>
+      <div id="calendar-display"></div>
+    </section>
+
+    <!-- Notes -->
+    <section id="notes">
+      <h2>Note rapide</h2>
+      <textarea id="notes-text" placeholder="Scrivi qui le tue note..."></textarea>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources">
+      <h2>Risorse</h2>
+      <ul>
+        <li><a href="https://www.google.com" target="_blank">Google</a></li>
+        <li><a href="https://github.com" target="_blank">GitHub</a></li>
+        <li><a href="https://calendar.google.com" target="_blank">Google Calendar</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Creato da te - Organizza al meglio il tuo tempo!
+  </footer>
+
+  <script>
+    // To-Do List funzionalità
+    const todosUL = document.getElementById('todos');
+    const todoInput = document.getElementById('todo-input');
+
+    function addTodo() {
+      const text = todoInput.value.trim();
+      if (!text) return alert('Inserisci un’attività!');
+      const li = document.createElement('li');
+      li.textContent = text;
+
+      // checkbox per completare
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.style.marginRight = '10px';
+      checkbox.onclick = () => {
+        li.classList.toggle('completed');
+      };
+
+      // bottone elimina
+      const delBtn = document.createElement('button');
+      delBtn.textContent = '×';
+      delBtn.title = 'Elimina attività';
+      delBtn.onclick = () => {
+        todosUL.removeChild(li);
+      };
+
+      li.prepend(checkbox);
+      li.appendChild(delBtn);
+      todosUL.appendChild(li);
+
+      todoInput.value = '';
+    }
+
+    // Calendario semplice (mostra mese e anno correnti)
+    function showCalendar() {
+      const calendarDiv = document.getElementById('calendar-display');
+      const today = new Date();
+      const options = { month: 'long', year: 'numeric' };
+      calendarDiv.textContent = today.toLocaleDateString('it-IT', options);
+    }
+
+    showCalendar();
+  </script>
+</body>
+</html>
