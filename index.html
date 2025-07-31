@@ -64,6 +64,19 @@
       background: #007aff;
       color: #fff;
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
   </style>
 </head>
 <body>
@@ -76,7 +89,7 @@
     </div>
 
     <div class="card">
-      <h2>📚 Lettura Quotidiana</h2>
+      <h2>📚 Libreria Personale</h2>
       <input type="text" placeholder="Titolo libro" id="bookTitle" />
       <select id="bookStatus">
         <option value="iniziato">Iniziato</option>
@@ -85,7 +98,16 @@
       </select>
       <input type="number" placeholder="Valutazione 1-5" min="1" max="5" id="bookRating" />
       <button onclick="addBook()">Aggiungi</button>
-      <ul id="bookList"></ul>
+      <table id="bookTable">
+        <thead>
+          <tr>
+            <th>Titolo</th>
+            <th>Stato</th>
+            <th>Valutazione</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <div class="card">
@@ -127,9 +149,12 @@
       const status = document.getElementById('bookStatus').value;
       const rating = document.getElementById('bookRating').value;
       if (title && rating) {
-        const li = document.createElement('li');
-        li.textContent = `${title} - ${status} - ⭐${rating}`;
-        document.getElementById('bookList').appendChild(li);
+        const table = document.querySelector('#bookTable tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${title}</td><td>${status}</td><td>⭐${rating}</td>`;
+        table.appendChild(row);
+        document.getElementById('bookTitle').value = '';
+        document.getElementById('bookRating').value = '';
       }
     }
 
