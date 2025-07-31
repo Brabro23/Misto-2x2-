@@ -161,6 +161,10 @@
     border-radius: 10px 0 0 10px;
     transition: width 0.5s ease;
   }
+  #projects input[type=range] {
+    width: 100%;
+    margin-top: 5px;
+  }
 
   /* Calendar base */
   #calendar {
@@ -242,6 +246,7 @@
   <!-- Projects -->
   <section id="projects">
     <h2>Progetti</h2>
+    <button id="add-project-btn">Aggiungi Progetto</button>
     <ul id="projects-list"></ul>
   </section>
 
@@ -252,7 +257,9 @@
 </footer>
 
 <script>
+  // ---------------------
   // TO-DO LIST
+  // ---------------------
   const todoText = document.getElementById('todo-text');
   const todoPriority = document.getElementById('todo-priority');
   const addTodoBtn = document.getElementById('add-todo-btn');
@@ -270,7 +277,7 @@
       const li = document.createElement('li');
       li.className = todo.completed ? 'completed' : '';
       li.classList.add(todo.priority);
-      
+
       // Checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
@@ -280,12 +287,12 @@
         saveTodos();
         renderTodos();
       });
-      
+
       // Text span
       const textSpan = document.createElement('span');
       textSpan.textContent = todo.text;
       textSpan.className = 'text';
-      
+
       // Delete button
       const delBtn = document.createElement('button');
       delBtn.textContent = '×';
@@ -295,8 +302,71 @@
         saveTodos();
         renderTodos();
       });
-      
+
       li.appendChild(checkbox);
       li.appendChild(textSpan);
       li.appendChild(delBtn);
-     
+      todoItems.appendChild(li);
+    });
+  }
+
+  addTodoBtn.addEventListener('click', () => {
+    const text = todoText.value.trim();
+    const priority = todoPriority.value;
+    if(text === '') {
+      alert('Inserisci una descrizione per l\'attività!');
+      return;
+    }
+    todos.push({text, priority, completed: false});
+    saveTodos();
+    renderTodos();
+    todoText.value = '';
+    todoPriority.value = 'medium';
+  });
+
+  renderTodos();
+
+  // ---------------------
+  // NOTES
+  // ---------------------
+  const notesText = document.getElementById('notes-text');
+  let notes = localStorage.getItem('notes') || '';
+
+  notesText.value = notes;
+
+  notesText.addEventListener('input', () => {
+    localStorage.setItem('notes', notesText.value);
+  });
+
+  // ---------------------
+  // PROJECTS
+  // ---------------------
+  const addProjectBtn = document.getElementById('add-project-btn');
+  const projectsList = document.getElementById('projects-list');
+  let projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+  function saveProjects() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }
+
+  function renderProjects() {
+    projectsList.innerHTML = '';
+    projects.forEach((project, index) => {
+      const li = document.createElement('li');
+
+      // Titolo progetto
+      const title = document.createElement('div');
+      title.textContent = project.title;
+      title.className = 'title';
+
+      // Barra progresso
+      const progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+
+      const progressFill = document.createElement('div');
+      progressFill.className = 'progress-fill';
+      progressFill.style.width = project.progress + '%';
+
+      progressBar.appendChild(progressFill);
+
+      // Input range per modificare
