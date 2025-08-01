@@ -3,185 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notion-style Organizer</title>
+  <title>Organizer Interattivo - Stile Notion</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
+      background: #f7f7f7;
       color: #333;
+      padding: 20px;
     }
     header {
-      background: #fff;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
+      margin-bottom: 30px;
       font-weight: bold;
     }
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
     }
     .card {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 20px;
     }
     .card h2 {
-      margin-bottom: 15px;
       font-size: 1.2rem;
-    }
-    textarea, input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
       margin-bottom: 10px;
+    }
+    textarea, input, select, button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 0.9rem;
     }
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
+    button {
+      background-color: #007aff;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .task-list li.done {
+      text-decoration: line-through;
+      color: gray;
+    }
+    .calendar-view {
+      display: flex;
       gap: 5px;
+      margin-top: 10px;
     }
-    .day {
-      padding: 10px;
-      background: #e8e8e8;
-      text-align: center;
-      border-radius: 6px;
-    }
-    .day.today {
-      background: #007aff;
-      color: #fff;
+    .calendar-view button {
+      flex: 1;
     }
     table {
       width: 100%;
+      margin-top: 10px;
       border-collapse: collapse;
-      margin-top: 15px;
     }
     th, td {
-      padding: 10px;
       border: 1px solid #ccc;
-      text-align: left;
+      padding: 8px;
     }
     th {
-      background-color: #f0f0f0;
-    }
-    .library-image {
-      width: 100%;
-      height: auto;
-      margin-top: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      background: #eee;
     }
   </style>
 </head>
 <body>
-  <header>🧠 Notion-style Organizer</header>
-  <div class="container">
-
-    <div class="card">
-      <h2>🗕️ Calendario</h2>
-      <div class="calendar" id="calendar"></div>
-    </div>
-
-    <div class="card">
-      <h2>📚 Libreria Personale</h2>
-      <input type="text" placeholder="Titolo libro" id="bookTitle" />
-      <select id="bookStatus">
-        <option value="iniziato">Iniziato</option>
-        <option value="in corso">In Corso</option>
-        <option value="completato">Completato</option>
-      </select>
-      <input type="number" placeholder="Valutazione 1-5" min="1" max="5" id="bookRating" />
-      <button onclick="addBook()">Aggiungi</button>
-      <table id="bookTable">
-        <thead>
-          <tr>
-            <th>Titolo</th>
-            <th>Stato</th>
-            <th>Valutazione</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Bookshelf.jpg" alt="Libreria Virtuale" class="library-image" />
-    </div>
-
+  <header>📘 Organizer Interattivo - Stile Notion</header>
+  <div class="grid">
     <div class="card">
       <h2>✅ Task Giornalieri</h2>
-      <input type="text" id="taskInput" placeholder="Nuovo task..." />
-      <button onclick="addTask()">Aggiungi Task</button>
-      <ul id="taskList"></ul>
+      <select id="taskPriority">
+        <option value="importante">Importante</option>
+        <option value="normale">Normale</option>
+      </select>
+      <input type="text" id="taskInput" placeholder="Aggiungi un task..." />
+      <button onclick="addTask()">Aggiungi</button>
+      <ul id="taskList" class="task-list"></ul>
     </div>
 
     <div class="card">
-      <h2>🗒️ Note</h2>
-      <textarea rows="10" placeholder="Scrivi una nota..." oninput="saveNotes(this.value)"></textarea>
+      <h2>📚 Libreria</h2>
+      <input type="text" id="bookTitle" placeholder="Titolo libro" />
+      <select id="bookStatus">
+        <option value="da leggere">Da leggere</option>
+        <option value="in corso">In corso</option>
+        <option value="completato">Completato</option>
+      </select>
+      <button onclick="addBook()">Aggiungi Libro</button>
+      <table id="bookTable">
+        <thead><tr><th>Titolo</th><th>Stato</th></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
 
+    <div class="card">
+      <h2>📅 Calendario</h2>
+      <div class="calendar-view">
+        <button onclick="setView('mese')">Mensile</button>
+        <button onclick="setView('settimana')">Settimanale</button>
+        <button onclick="setView('giorno')">Giornaliero</button>
+      </div>
+      <div id="calendarContainer"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗒️ Note Veloci</h2>
+      <textarea id="quickNotes" rows="10" placeholder="Scrivi qui le tue note..."></textarea>
+    </div>
   </div>
 
   <script>
-    function drawCalendar() {
-      const today = new Date();
-      const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-      const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-      const calendar = document.getElementById('calendar');
-      calendar.innerHTML = '';
-      for (let i = 0; i < firstDay; i++) {
-        calendar.innerHTML += '<div></div>';
-      }
-      for (let d = 1; d <= daysInMonth; d++) {
-        const isToday = d === today.getDate();
-        const div = document.createElement('div');
-        div.className = 'day' + (isToday ? ' today' : '');
-        div.textContent = d;
-        calendar.appendChild(div);
-      }
-    }
-    drawCalendar();
-
-    function addBook() {
-      const title = document.getElementById('bookTitle').value;
-      const status = document.getElementById('bookStatus').value;
-      const rating = document.getElementById('bookRating').value;
-      if (title && rating) {
-        const table = document.querySelector('#bookTable tbody');
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${title}</td><td>${status}</td><td>⭐${rating}</td>`;
-        table.appendChild(row);
-        document.getElementById('bookTitle').value = '';
-        document.getElementById('bookRating').value = '';
-      }
-    }
-
+    // TASK
     function addTask() {
       const input = document.getElementById('taskInput');
+      const priority = document.getElementById('taskPriority').value;
       if (input.value.trim()) {
         const li = document.createElement('li');
-        li.textContent = input.value;
+        li.textContent = `${priority === 'importante' ? '⭐' : ''} ${input.value}`;
         li.onclick = () => li.classList.toggle('done');
         document.getElementById('taskList').appendChild(li);
         input.value = '';
       }
     }
 
-    function saveNotes(val) {
-      localStorage.setItem('notes', val);
+    // BOOKS
+    function addBook() {
+      const title = document.getElementById('bookTitle').value;
+      const status = document.getElementById('bookStatus').value;
+      if (title) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${title}</td><td>${status}</td>`;
+        document.querySelector('#bookTable tbody').appendChild(row);
+        document.getElementById('bookTitle').value = '';
+      }
     }
 
-    document.querySelector('textarea').value = localStorage.getItem('notes') || '';
+    // CALENDAR VIEW
+    function setView(view) {
+      const container = document.getElementById('calendarContainer');
+      const today = new Date();
+      container.innerHTML = '';
+      if (view === 'mese') {
+        const days = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        for (let i = 1; i <= days; i++) {
+          const div = document.createElement('div');
+          div.textContent = `${i}/${today.getMonth() + 1}`;
+          container.appendChild(div);
+        }
+      } else if (view === 'settimana') {
+        const days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'];
+        days.forEach(day => {
+          const div = document.createElement('div');
+          div.textContent = day;
+          container.appendChild(div);
+        });
+      } else {
+        const div = document.createElement('div');
+        div.textContent = `Oggi: ${today.toLocaleDateString()}`;
+        container.appendChild(div);
+      }
+    }
+
+    // NOTE
+    const noteArea = document.getElementById('quickNotes');
+    noteArea.value = localStorage.getItem('quickNotes') || '';
+    noteArea.addEventListener('input', () => {
+      localStorage.setItem('quickNotes', noteArea.value);
+    });
+
+    // Inizializza vista calendario default
+    setView('mese');
   </script>
 </body>
 </html>
