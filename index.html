@@ -20,16 +20,16 @@
         .header {
             background: linear-gradient(45deg, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
             color: white;
-            padding: 30px 0;
+            padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .container {
-            margin-top: 30px;
+            margin-top: 20px;
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .card {
@@ -48,7 +48,8 @@
             font-weight: 600;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
-            padding: 15px;
+            padding: 10px;
+            font-size: 1rem;
         }
         .table-responsive {
             overflow-x: auto;
@@ -59,8 +60,8 @@
         .table th, .table td {
             vertical-align: middle;
             white-space: nowrap;
-            padding: 10px; /* Ridotto per schermi piccoli */
-            font-size: 0.9rem; /* Ridotto per schermi piccoli */
+            padding: 6px;
+            font-size: 0.75rem;
         }
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: rgba(0, 0, 0, 0.03);
@@ -70,7 +71,7 @@
             cursor: pointer;
         }
         .card-title {
-            font-size: 1.1rem; /* Ridotto per schermi piccoli */
+            font-size: 1rem;
             font-weight: 700;
             color: #007bff;
         }
@@ -83,24 +84,31 @@
             .container {
                 padding: 10px;
             }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
             .card-header {
-                padding: 10px;
+                font-size: 0.9rem;
             }
             .card-body {
-                padding: 10px;
+                padding: 8px;
             }
             .list-group-item {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                padding: 8px 10px;
             }
             .table th, .table td {
-                padding: 8px; /* Ulteriore riduzione su telefoni */
-                font-size: 0.8rem; /* Ulteriore riduzione */
+                padding: 4px;
+                font-size: 0.7rem;
             }
             .row > div[class*="col-"] {
-                padding: 5px; /* Spaziatura ridotta tra le colonne */
+                padding: 4px;
             }
-            .col-sm-6 {
-                width: 50%;
+            .card-title {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -215,14 +223,6 @@
         </div>
 
         <div class="card mb-4">
-            <div class="card-header">Tabellone Finale</div>
-            <div class="card-body">
-                <div id="final-bracket-container" class="table-responsive">
-                    </div>
-            </div>
-        </div>
-
-        <div class="card mb-4">
             <div class="card-header bg-friday">
                 Venerdì - Fase a Gironi
             </div>
@@ -238,13 +238,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>17:00</td><td>CATALANI-VERZOLINI vs VERDINI-FERRARI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
+                            <tr><td>17:00</td><td>CATALANI-VERZOLINI vs FARINELLI-FARINELLI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
                             <tr><td>17:30</td><td>MAZZARINI-CICILIANI vs PANICO-PANICO (C)</td><td>SABBATINI-FIORETTO vs LATINI-CRISTOFORI (A)</td><td>BASTIANELLI-NICOLINI vs CREMASCOLI-CARDINALI (C)</td></tr>
-                            <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs VERDINI-FERRARI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
+                            <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs FARINELLI-FARINELLI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
                             <tr><td>18:30</td><td>CREMASCOLI-CARDINALI vs MAZZARINI-CICILIANI (C)</td><td>BASTIANELLI-NICOLINI vs PANICO-PANICO (C)</td><td>SANFILIPPO-SANFILIPPO vs MEDICI-CARTUCCIA (B)</td></tr>
                             <tr><td>19:00</td><td>ULIASSI-PERINI vs MAZZARINI-CICILIANI (G)</td><td>LATINI-CRISTOFORI vs TARSI-FELIZIANI (A)</td><td>SABBATINI-FIORETTO vs CATALANI-VERZOLINI (A)</td></tr>
-                            <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>VERDINI-FERRARI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
-                            <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs VERDINI-FERRARI (A)</td></tr>
+                            <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>FARINELLI-FARINELLI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
+                            <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs FARINELLI-FARINELLI (A)</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -332,60 +332,60 @@
         function getGroupStandings() {
             return {
                 'Girone A': [
-                    { team: 'SABBATINI-FIORETTO', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'VERDINI-FERRARI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'TARSI-FELIZIANI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'CATALANI-VERZOLINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'LATINI-CRISTOFORI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'SABBATINI-FIORETTO', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'FARINELLI-FARINELLI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'TARSI-FELIZIANI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'CATALANI-VERZOLINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'LATINI-CRISTOFORI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone B': [
-                    { team: 'ESPOSTO-PALMIERI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ANDREANELLI-ZINGARETTI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'MEDICI-CARTUCCIA', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'LONGARINI-MAGINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'SANFILIPPO-SANFILIPPO', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'ESPOSTO-PALMIERI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ANDREANELLI-ZINGARETTI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'MEDICI-CARTUCCIA', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'LONGARINI-MAGINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'SANFILIPPO-SANFILIPPO', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone C': [
-                    { team: 'MAZZARINI-CICILIANI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'CREMASCOLI-CARDINALI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'BASTIANELLI-NICOLINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ULIASSI-PERINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'PANICO-PANICO', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'MAZZARINI-CICILIANI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'CREMASCOLI-CARDINALI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'BASTIANELLI-NICOLINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ULIASSI-PERINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'PANICO-PANICO', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone D': [
-                    { team: 'DOMINGUEZ-SPADONI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ARCANGELI-CAMPOLUCCI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'MAZZANTINI-GREGANTI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'AMICI-TARSI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'DE DOMINICIS-MENICHINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'DOMINGUEZ-SPADONI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ARCANGELI-CAMPOLUCCI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'MAZZANTINI-GREGANTI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'AMICI-TARSI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'DE DOMINICIS-MENICHINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone E': [
-                    { team: 'FREDDI-GRAIDI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'OPPIO-PASQUALINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'BROCCOLO-PARADISI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'CESARETTI-RIPANTI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'BELVEDERESI-LUCARELLI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'FREDDI-GRAIDI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'OPPIO-PASQUALINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'BROCCOLO-PARADISI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'CESARETTI-RIPANTI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'BELVEDERESI-LUCARELLI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone F': [
-                    { team: 'LOLLI-DONNA', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ROSSI-MOSCONI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'TIRANTI-CHIAVATTI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'GIULIANI-PAOLINELLI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'FABINI-MORO', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'LOLLI-DONNA', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ROSSI-MOSCONI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'TIRANTI-CHIAVATTI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'GIULIANI-PAOLINELLI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'FABINI-MORO', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone G': [
-                    { team: 'BALDUCCI-EMILI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'COSTANZI-SPADONI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ROSSI-DISCEPOLI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'POLZONETTI-MATTEI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'PASQUINELLI-STAZI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'BALDUCCI-EMILI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'COSTANZI-SPADONI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ROSSI-DISCEPOLI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'POLZONETTI-MATTEI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'PASQUINELLI-STAZI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ],
                 'Girone H': [
-                    { team: 'RAVELLINO-FARNETI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'GAMBERINI-CECCONI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'MENGARELLI-BARTOZZI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ALLEGREZZA-GIRINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'ROSSINI-URSINI', wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
+                    { team: 'RAVELLINO-FARNETI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'GAMBERINI-CECCONI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'MENGARELLI-BARTOZZI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ALLEGREZZA-GIRINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'ROSSINI-URSINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
                 ]
             };
         }
@@ -395,15 +395,16 @@
             const standings = getGroupStandings();
             container.innerHTML = Object.keys(standings).map(groupName => {
                 const groupTable = `
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-6 mb-3">
                         <div class="card h-100">
                             <div class="card-header">${groupName}</div>
-                            <div class="card-body p-2">
+                            <div class="card-body p-1">
                                 <div class="table-responsive">
                                     <table class="table table-sm table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th>Squadra</th>
+                                                <th>P</th>
                                                 <th>V</th>
                                                 <th>P</th>
                                             </tr>
@@ -412,6 +413,7 @@
                                             ${standings[groupName].map(team => `
                                                 <tr>
                                                     <td>${team.team}</td>
+                                                    <td>${team.score}</td>
                                                     <td>${team.wins}</td>
                                                     <td>${team.losses}</td>
                                                 </tr>
@@ -427,6 +429,15 @@
             }).join('');
         }
 
+        function getFinalBracket() {
+            return [
+                { round: 'Ottavi', matches: ['1°E vs 2°F (OTT1)', '2°A vs 1°H (OTT2)', '1°D vs 2°B (OTT3)', '2°C vs 1°G (OTT4)', '1°A vs 2°H (OTT5)', '2°E vs 1°F (OTT6)', '1°C vs 2°G (OTT7)', '2°D vs 1°B (OTT8)'] },
+                { round: 'Quarti', matches: ['vinc. OTT1 vs vinc. OTT2 (quarto1)', 'vinc. OTT3 vs vinc. OTT4 (quarto2)', 'vinc. OTT5 vs vinc. OTT6 (quarto3)', 'vinc. OTT7 vs vinc. OTT8 (quarto4)'] },
+                { round: 'Semifinali', matches: ['SEMIFINALE 1 (vinc. quarto1 vs vinc. quarto2)', 'SEMIFINALE 2 (vinc. quarto3 vs vinc. quarto4)'] },
+                { round: 'Finale', matches: ['3°/4° POSTO', 'FINALISSIMA'] }
+            ];
+        }
+
         function renderFinalBracket() {
             const container = document.getElementById('final-bracket-container');
             const bracket = getFinalBracket();
@@ -440,9 +451,6 @@
 
         renderGroupStandings();
         renderFinalBracket();
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
