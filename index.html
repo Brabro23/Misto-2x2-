@@ -7,10 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-image: url('MAT237 (1).jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: #212529; /* Per migliorare la leggibilità del testo */
         }
         .header {
-            background-color: #007bff;
+            background-color: rgba(0, 123, 255, 0.8);
             color: white;
             padding: 20px 0;
             text-align: center;
@@ -18,12 +23,20 @@
         .container {
             margin-top: 30px;
         }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Sfondo semi-trasparente */
+            border-radius: 10px;
+        }
         .card-header {
-            background-color: #e9ecef;
+            background-color: rgba(233, 236, 239, 0.9);
             font-weight: bold;
+        }
+        .table-responsive {
+            overflow-x: auto;
         }
         .table th, .table td {
             vertical-align: middle;
+            white-space: nowrap; /* Evita che il testo vada a capo */
         }
         .bg-friday {
             background-color: #ffe6e6;
@@ -57,7 +70,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone A</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">SABBATINI-FIORETTO</li>
@@ -67,7 +80,7 @@
                             <li class="list-group-item">LATINI-CRISTOFORI</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone B</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">ESPOSTO-PALMIERI</li>
@@ -77,7 +90,7 @@
                             <li class="list-group-item">SANFILIPPO-SANFILIPPO</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone C</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">MAZZARINI-CICILIANI</li>
@@ -87,7 +100,7 @@
                             <li class="list-group-item">PANICO-PANICO</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone D</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">DOMINGUEZ-SPADONI</li>
@@ -97,7 +110,7 @@
                             <li class="list-group-item">DE DOMINICIS-MENICHINI</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone E</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">FREDDI-GRAIDI</li>
@@ -107,7 +120,7 @@
                             <li class="list-group-item">BELVEDERESI-LUCARELLI</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone F</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">LOLLI-DONNA</li>
@@ -117,7 +130,7 @@
                             <li class="list-group-item">FABINI-MORO</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone G</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">BALDUCCI-EMILI</li>
@@ -127,7 +140,7 @@
                             <li class="list-group-item">PASQUINELLI-STAZI</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6 mb-3">
                         <h5 class="card-title">Girone H</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">RAVELLINO-FARNETI</li>
@@ -144,7 +157,7 @@
         <div class="card mb-4">
             <div class="card-header">Classifica Gironi</div>
             <div class="card-body">
-                <div id="group-standings-container">
+                <div id="group-standings-container" class="table-responsive">
                     </div>
             </div>
         </div>
@@ -152,7 +165,7 @@
         <div class="card mb-4">
             <div class="card-header">Tabellone Finale</div>
             <div class="card-body">
-                <div id="final-bracket-container">
+                <div id="final-bracket-container" class="table-responsive">
                     </div>
             </div>
         </div>
@@ -162,25 +175,27 @@
                 Venerdì - Fase a Gironi
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Ora</th>
-                            <th>Campo 7</th>
-                            <th>Campo 6</th>
-                            <th>Campo 5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>17:00</td><td>CATALANI-VERZOLINI vs VERDINI-FERRARI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
-                        <tr><td>17:30</td><td>MAZZARINI-CICILIANI vs PANICO-PANICO (C)</td><td>SABBATINI-FIORETTO vs LATINI-CRISTOFORI (A)</td><td>BASTIANELLI-NICOLINI vs CREMASCOLI-CARDINALI (C)</td></tr>
-                        <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs VERDINI-FERRARI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
-                        <tr><td>18:30</td><td>CREMASCOLI-CARDINALI vs MAZZARINI-CICILIANI (C)</td><td>BASTIANELLI-NICOLINI vs PANICO-PANICO (C)</td><td>SANFILIPPO-SANFILIPPO vs MEDICI-CARTUCCIA (B)</td></tr>
-                        <tr><td>19:00</td><td>ULIASSI-PERINI vs MAZZARINI-CICILIANI (G)</td><td>LATINI-CRISTOFORI vs TARSI-FELIZIANI (A)</td><td>SABBATINI-FIORETTO vs CATALANI-VERZOLINI (A)</td></tr>
-                        <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>VERDINI-FERRARI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
-                        <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs VERDINI-FERRARI (A)</td></tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Ora</th>
+                                <th>Campo 7</th>
+                                <th>Campo 6</th>
+                                <th>Campo 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>17:00</td><td>CATALANI-VERZOLINI vs VERDINI-FERRARI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
+                            <tr><td>17:30</td><td>MAZZARINI-CICILIANI vs PANICO-PANICO (C)</td><td>SABBATINI-FIORETTO vs LATINI-CRISTOFORI (A)</td><td>BASTIANELLI-NICOLINI vs CREMASCOLI-CARDINALI (C)</td></tr>
+                            <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs VERDINI-FERRARI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
+                            <tr><td>18:30</td><td>CREMASCOLI-CARDINALI vs MAZZARINI-CICILIANI (C)</td><td>BASTIANELLI-NICOLINI vs PANICO-PANICO (C)</td><td>SANFILIPPO-SANFILIPPO vs MEDICI-CARTUCCIA (B)</td></tr>
+                            <tr><td>19:00</td><td>ULIASSI-PERINI vs MAZZARINI-CICILIANI (G)</td><td>LATINI-CRISTOFORI vs TARSI-FELIZIANI (A)</td><td>SABBATINI-FIORETTO vs CATALANI-VERZOLINI (A)</td></tr>
+                            <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>VERDINI-FERRARI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
+                            <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs VERDINI-FERRARI (A)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -189,39 +204,41 @@
                 Sabato - Fase a Gironi
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Ora</th>
-                            <th>Campo 7</th>
-                            <th>Campo 6</th>
-                            <th>Campo 5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>9:00</td><td>GIULIANI-PAOLINELLI vs FABINI-MORO (F)</td><td>LOLLI-DONNA vs TIRANTI-CHIAVATTI (F)</td><td></td></tr>
-                        <tr><td>9:30</td><td>MENGARELLI-BARTOZZI vs ALLEGREZZA-GIRINI (H)</td><td>BROCCOLO-PARADISI vs OPPIO-PASQUALINI (E)</td><td>ROSSINI-URSINI vs RAVELLINO-FARNETI (H)</td></tr>
-                        <tr><td>10:00</td><td>CESARETTI-RIPANTI vs BELVEDERESI-LUCARELLI (E)</td><td>PASQUINELLI-STAZI vs ROSSI-DISCEPOLI (G)</td><td>ULIASSI-PERINI vs PANICO-PANICO (C)</td></tr>
-                        <tr><td>10:30</td><td>TIRANTI-CHIAVATTI vs GIULIANI-PAOLINELLI (F)</td><td>GAMBERINI-CECCONI vs ROSSINI-URSINI (H)</td><td>ROSSI-MOSCONI vs LOLLI-DONNA (F)</td></tr>
-                        <tr><td>11:00</td><td>PANICO-PANICO vs CREMASCOLI-CARDINALI (C)</td><td>RAVELLINO-FARNETI vs ALLEGREZZA-GIRINI (H)</td><td>ROSSI-DISCEPOLI vs POLZONETTI-MATTEI (G)</td></tr>
-                        <tr><td>11:30</td><td>GIULIANI-PAOLINELLI vs LOLLI-DONNA (F)</td><td>TIRANTI-CHIAVATTI vs FABINI-MORO (F)</td><td>CESARETTI-RIPANTI vs BROCCOLO-PARADISI (E)</td></tr>
-                        <tr><td>12:00</td><td>PASQUINELLI-STAZI vs POLZONETTI-MATTEI (G)</td><td>CREMASCOLI-CARDINALI vs ULIASSI-PERINI (C)</td><td>RAVELLINO-FARNETI vs MENGARELLI-BARTOZZI (H)</td></tr>
-                        <tr><td>12:30</td><td>FABINI-MORO vs LOLLI-DONNA (F)</td><td>ALLEGREZZA-GIRINI vs GAMBERINI-CECCONI (H)</td><td>ROSSI-MOSCONI vs TIRANTI-CHIAVATTI (F)</td></tr>
-                        <tr class="table-info"><td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 14:30</td></tr>
-                        <tr><td>14:30</td><td>ROSSINI-URSINI vs MENGARELLI-BARTOZZI (H)</td><td>DOMINGUEZ-SPADONI vs DE DOMINICIS-MENICHINI (D)</td><td>OPPIO-PASQUALINI vs FREDDI-GRAIDI (E)</td></tr>
-                        <tr><td>15:00</td><td>GIULIANI-PAOLINELLI vs ROSSI-MOSCONI (F)</td><td>DE DOMINICIS-MENICHINI vs ARCANGELI-CAMPOLUCCI (D)</td><td>BELVEDERESI-LUCARELLI vs BROCCOLO-PARADISI (E)</td></tr>
-                        <tr><td>15:30</td><td>AMICI-TARSI vs DOMINGUEZ-SPADONI (D)</td><td>POLZONETTI-MATTEI vs COSTANZI-SPADONI (G)</td><td>MENGARELLI-BARTOZZI vs GAMBERINI-CECCONI (H)</td></tr>
-                        <tr><td>16:00</td><td>DE DOMINICIS-MENICHINI vs MAZZANTINI-GREGANTI (D)</td><td>FABINI-MORO vs ROSSI-MOSCONI (F)</td><td>OPPIO-PASQUALINI vs BELVEDERESI-LUCARELLI (E)</td></tr>
-                        <tr><td>16:30</td><td>AMICI-TARSI vs DE DOMINICIS-MENICHINI (D)</td><td>ALLEGREZZA-GIRINI vs ROSSINI-URSINI (H)</td><td>SANFILIPPO-SANFILIPPO vs LONGARINI-MAGINI (B)</td></tr>
-                        <tr><td>17:00</td><td>POLZONETTI-MATTEI vs BALDUCCI-EMILI (G)</td><td>BROCCOLO-PARADISI vs FREDDI-GRAIDI (E)</td><td>PASQUINELLI-STAZI vs COSTANZI-SPADONI (G)</td></tr>
-                        <tr><td>17:30</td><td>LONGARINI-MAGINI vs ESPOSTO-PALMIERI (B)</td><td>MAZZANTINI-GREGANTI vs ARCANGELI-CAMPOLUCCI (D)</td><td>MEDICI-CARTUCCIA vs ANDREANELLI-ZINGARETTI (B)</td></tr>
-                        <tr><td>18:00</td><td>CESARETTI-RIPANTI vs OPPIO-PASQUALINI (E)</td><td>BELVEDERESI-LUCARELLI vs FREDDI-GRAIDI (E)</td><td>ROSSI-DISCEPOLI vs BALDUCCI-EMILI (G)</td></tr>
-                        <tr><td>18:30</td><td>ANDREANELLI-ZINGARETTI vs LONGARINI-MAGINI (B)</td><td>DOMINGUEZ-SPADONI vs MAZZANTINI-GREGANTI (D)</td><td>ARCANGELI-CAMPOLUCCI vs AMICI-TARSI (D)</td></tr>
-                        <tr><td>19:00</td><td>GAMBERINI-CECCONI vs RAVELLINO-FARNETI (H)</td><td>ESPOSTO-PALMIERI vs SANFILIPPO-SANFILIPPO (B)</td><td>COSTANZI-SPADONI vs BALDUCCI-EMILI (G)</td></tr>
-                        <tr><td>19:30</td><td>FREDDI-GRAIDI vs CESARETTI-RIPANTI (E)</td><td>LONGARINI-MAGINI vs MEDICI-CARTUCCIA (B)</td><td>MAZZANTINI-GREGANTI vs AMICI-TARSI (D)</td></tr>
-                        <tr><td>20:00</td><td>BALDUCCI-EMILI vs PASQUINELLI-STAZI (G)</td><td>COSTANZI-SPADONI vs ROSSI-DISCEPOLI (G)</td><td>ARCANGELI-CAMPOLUCCI vs DOMINGUEZ-SPADONI (D)</td></tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Ora</th>
+                                <th>Campo 7</th>
+                                <th>Campo 6</th>
+                                <th>Campo 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>9:00</td><td>GIULIANI-PAOLINELLI vs FABINI-MORO (F)</td><td>LOLLI-DONNA vs TIRANTI-CHIAVATTI (F)</td><td></td></tr>
+                            <tr><td>9:30</td><td>MENGARELLI-BARTOZZI vs ALLEGREZZA-GIRINI (H)</td><td>BROCCOLO-PARADISI vs OPPIO-PASQUALINI (E)</td><td>ROSSINI-URSINI vs RAVELLINO-FARNETI (H)</td></tr>
+                            <tr><td>10:00</td><td>CESARETTI-RIPANTI vs BELVEDERESI-LUCARELLI (E)</td><td>PASQUINELLI-STAZI vs ROSSI-DISCEPOLI (G)</td><td>ULIASSI-PERINI vs PANICO-PANICO (C)</td></tr>
+                            <tr><td>10:30</td><td>TIRANTI-CHIAVATTI vs GIULIANI-PAOLINELLI (F)</td><td>GAMBERINI-CECCONI vs ROSSINI-URSINI (H)</td><td>ROSSI-MOSCONI vs LOLLI-DONNA (F)</td></tr>
+                            <tr><td>11:00</td><td>PANICO-PANICO vs CREMASCOLI-CARDINALI (C)</td><td>RAVELLINO-FARNETI vs ALLEGREZZA-GIRINI (H)</td><td>ROSSI-DISCEPOLI vs POLZONETTI-MATTEI (G)</td></tr>
+                            <tr><td>11:30</td><td>GIULIANI-PAOLINELLI vs LOLLI-DONNA (F)</td><td>TIRANTI-CHIAVATTI vs FABINI-MORO (F)</td><td>CESARETTI-RIPANTI vs BROCCOLO-PARADISI (E)</td></tr>
+                            <tr><td>12:00</td><td>PASQUINELLI-STAZI vs POLZONETTI-MATTEI (G)</td><td>CREMASCOLI-CARDINALI vs ULIASSI-PERINI (C)</td><td>RAVELLINO-FARNETI vs MENGARELLI-BARTOZZI (H)</td></tr>
+                            <tr><td>12:30</td><td>FABINI-MORO vs LOLLI-DONNA (F)</td><td>ALLEGREZZA-GIRINI vs GAMBERINI-CECCONI (H)</td><td>ROSSI-MOSCONI vs TIRANTI-CHIAVATTI (F)</td></tr>
+                            <tr class="table-info"><td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 14:30</td></tr>
+                            <tr><td>14:30</td><td>ROSSINI-URSINI vs MENGARELLI-BARTOZZI (H)</td><td>DOMINGUEZ-SPADONI vs DE DOMINICIS-MENICHINI (D)</td><td>OPPIO-PASQUALINI vs FREDDI-GRAIDI (E)</td></tr>
+                            <tr><td>15:00</td><td>GIULIANI-PAOLINELLI vs ROSSI-MOSCONI (F)</td><td>DE DOMINICIS-MENICHINI vs ARCANGELI-CAMPOLUCCI (D)</td><td>BELVEDERESI-LUCARELLI vs BROCCOLO-PARADISI (E)</td></tr>
+                            <tr><td>15:30</td><td>AMICI-TARSI vs DOMINGUEZ-SPADONI (D)</td><td>POLZONETTI-MATTEI vs COSTANZI-SPADONI (G)</td><td>MENGARELLI-BARTOZZI vs GAMBERINI-CECCONI (H)</td></tr>
+                            <tr><td>16:00</td><td>DE DOMINICIS-MENICHINI vs MAZZANTINI-GREGANTI (D)</td><td>FABINI-MORO vs ROSSI-MOSCONI (F)</td><td>OPPIO-PASQUALINI vs BELVEDERESI-LUCARELLI (E)</td></tr>
+                            <tr><td>16:30</td><td>AMICI-TARSI vs DE DOMINICIS-MENICHINI (D)</td><td>ALLEGREZZA-GIRINI vs ROSSINI-URSINI (H)</td><td>SANFILIPPO-SANFILIPPO vs LONGARINI-MAGINI (B)</td></tr>
+                            <tr><td>17:00</td><td>POLZONETTI-MATTEI vs BALDUCCI-EMILI (G)</td><td>BROCCOLO-PARADISI vs FREDDI-GRAIDI (E)</td><td>PASQUINELLI-STAZI vs COSTANZI-SPADONI (G)</td></tr>
+                            <tr><td>17:30</td><td>LONGARINI-MAGINI vs ESPOSTO-PALMIERI (B)</td><td>MAZZANTINI-GREGANTI vs ARCANGELI-CAMPOLUCCI (D)</td><td>MEDICI-CARTUCCIA vs ANDREANELLI-ZINGARETTI (B)</td></tr>
+                            <tr><td>18:00</td><td>CESARETTI-RIPANTI vs OPPIO-PASQUALINI (E)</td><td>BELVEDERESI-LUCARELLI vs FREDDI-GRAIDI (E)</td><td>ROSSI-DISCEPOLI vs BALDUCCI-EMILI (G)</td></tr>
+                            <tr><td>18:30</td><td>ANDREANELLI-ZINGARETTI vs LONGARINI-MAGINI (B)</td><td>DOMINGUEZ-SPADONI vs MAZZANTINI-GREGANTI (D)</td><td>ARCANGELI-CAMPOLUCCI vs AMICI-TARSI (D)</td></tr>
+                            <tr><td>19:00</td><td>GAMBERINI-CECCONI vs RAVELLINO-FARNETI (H)</td><td>ESPOSTO-PALMIERI vs SANFILIPPO-SANFILIPPO (B)</td><td>COSTANZI-SPADONI vs BALDUCCI-EMILI (G)</td></tr>
+                            <tr><td>19:30</td><td>FREDDI-GRAIDI vs CESARETTI-RIPANTI (E)</td><td>LONGARINI-MAGINI vs MEDICI-CARTUCCIA (B)</td><td>MAZZANTINI-GREGANTI vs AMICI-TARSI (D)</td></tr>
+                            <tr><td>20:00</td><td>BALDUCCI-EMILI vs PASQUINELLI-STAZI (G)</td><td>COSTANZI-SPADONI vs ROSSI-DISCEPOLI (G)</td><td>ARCANGELI-CAMPOLUCCI vs DOMINGUEZ-SPADONI (D)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         
@@ -230,28 +247,30 @@
                 Domenica - Fasi Finali
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Ora</th>
-                            <th>Campo 7</th>
-                            <th>Campo 6</th>
-                            <th>Campo 5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>9:00</td><td>1°E vs 2°F (OTT1)</td><td>2°A vs 1°H (OTT2)</td><td>1°D vs 2°B (OTT3)</td></tr>
-                        <tr><td>9:45</td><td>2°C vs 1°G (OTT4)</td><td>1°A vs 2°H (OTT5)</td><td>2°E vs 1°F (OTT6)</td></tr>
-                        <tr><td>10:30</td><td>1°C vs 2°G (OTT7)</td><td>2°D vs 1°B (OTT8)</td><td></td></tr>
-                        <tr><td>11:15</td><td>vinc. OTT1 vs vinc. OTT2 (quarto1)</td><td>vinc. OTT3 vs vinc. OTT4 (quarto2)</td><td></td></tr>
-                        <tr><td>12:00</td><td>vinc. OTT5 vs vinc. OTT6 (quarto3)</td><td>vinc. OTT7 vs vinc. OTT8 (quarto4)</td><td></td></tr>
-                        <tr class="table-info"><td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 15:00</td></tr>
-                        <tr><td>15:00</td><td>SEMIFINALE 1 (vinc. quarto1 vs vinc. quarto2)</td><td></td><td></td></tr>
-                        <tr><td>16:00</td><td>SEMIFINALE 2 (vinc. quarto3 vs vinc. quarto4)</td><td></td><td></td></tr>
-                        <tr><td>17:00</td><td>3°/4° POSTO</td><td></td><td></td></tr>
-                        <tr><td>18:30</td><td>FINALISSIMA</td><td></td><td></td></tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Ora</th>
+                                <th>Campo 7</th>
+                                <th>Campo 6</th>
+                                <th>Campo 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>9:00</td><td>1°E vs 2°F (OTT1)</td><td>2°A vs 1°H (OTT2)</td><td>1°D vs 2°B (OTT3)</td></tr>
+                            <tr><td>9:45</td><td>2°C vs 1°G (OTT4)</td><td>1°A vs 2°H (OTT5)</td><td>2°E vs 1°F (OTT6)</td></tr>
+                            <tr><td>10:30</td><td>1°C vs 2°G (OTT7)</td><td>2°D vs 1°B (OTT8)</td><td></td></tr>
+                            <tr><td>11:15</td><td>vinc. OTT1 vs vinc. OTT2 (quarto1)</td><td>vinc. OTT3 vs vinc. OTT4 (quarto2)</td><td></td></tr>
+                            <tr><td>12:00</td><td>vinc. OTT5 vs vinc. OTT6 (quarto3)</td><td>vinc. OTT7 vs vinc. OTT8 (quarto4)</td><td></td></tr>
+                            <tr class="table-info"><td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 15:00</td></tr>
+                            <tr><td>15:00</td><td>SEMIFINALE 1 (vinc. quarto1 vs vinc. quarto2)</td><td></td><td></td></tr>
+                            <tr><td>16:00</td><td>SEMIFINALE 2 (vinc. quarto3 vs vinc. quarto4)</td><td></td><td></td></tr>
+                            <tr><td>17:00</td><td>3°/4° POSTO</td><td></td><td></td></tr>
+                            <tr><td>18:30</td><td>FINALISSIMA</td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -259,7 +278,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function getGroupStandings() {
-            // Aggiorna qui i dati delle classifiche dei gironi a fine giornata
             return {
                 'Girone A': [
                     { team: 'SABBATINI-FIORETTO', wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
@@ -321,7 +339,6 @@
         }
 
         function getFinalBracket() {
-            // Aggiorna qui i dati del tabellone a fine giornata
             return [
                 { round: 'Ottavi', matches: ['1°E vs 2°F (OTT1)', '2°A vs 1°H (OTT2)', '1°D vs 2°B (OTT3)', '2°C vs 1°G (OTT4)', '1°A vs 2°H (OTT5)', '2°E vs 1°F (OTT6)', '1°C vs 2°G (OTT7)', '2°D vs 1°B (OTT8)'] },
                 { round: 'Quarti', matches: ['vinc. OTT1 vs vinc. OTT2 (quarto1)', 'vinc. OTT3 vs vinc. OTT4 (quarto2)', 'vinc. OTT5 vs vinc. OTT6 (quarto3)', 'vinc. OTT7 vs vinc. OTT8 (quarto4)'] },
