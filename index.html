@@ -7,23 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-header::after {
-  content: none !important;
-}
-        body::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: none !important;
-        
         body {
+            color: #212529;
             font-family: 'Poppins', sans-serif;
             background-image: url('BBC-017.jpeg');
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
+            background-attachment: fixed;
             position: relative;
         }
         
@@ -34,7 +25,19 @@ header::after {
             left: 0;
             width: 100%;
             height: 100%;
+            background-color: rgba(240, 242, 245, 0.6);
             z-index: -1;
+        }
+
+        .header {
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+            background: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
         }
         .header img {
             max-width: 100%;
@@ -97,6 +100,7 @@ header::after {
         .bg-saturday { background-color: #e6f7ff; }
         .bg-sunday { background-color: #e6ffe6; }
 
+        
         .color-a { color: #007bff; }
         .color-b { color: #28a745; }
         .color-c { color: #fd7e14; }
@@ -106,7 +110,7 @@ header::after {
         .color-g { color: #ffc107; }
         .color-h { color: #e83e8c; }
         .color-g.dark-text { color: #000; } 
-
+    
         @media (max-width: 767.98px) {
             .container {
                 padding: 10px;
@@ -144,7 +148,7 @@ header::after {
 <body>
 
     <header class="header">
-        <img src="658A764D-94EF-4B30-8D67-D453A3C962B2.jpeg" alt="Baia Beach Cup Logo">
+        <img src="INDIRIZZO_DELLA_TUA_IMMAGINE.png" alt="Baia Beach Cup Logo">
         <p>Calendario del Torneo</p>
     </header>
 
