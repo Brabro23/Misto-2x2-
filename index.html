@@ -1,469 +1,427 @@
-<!doctype html>
-<html lang="it" class="h-full">
+<!DOCTYPE html>
+<html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beach Volley Live Stats</title>
-  <meta name="description" content="Dashboard live per monitorare le statistiche di un torneo di beach volley" />
-
-  <!-- Tailwind CSS (CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sand: {
-              50: '#FFF9ED', 100: '#FFF2D6', 200: '#FFE4A6', 300: '#FFD36E', 400: '#FFC247',
-              500: '#F3B43A', 600: '#D39429', 700: '#A66E1F', 800: '#7A5018', 900: '#4A2F0D'
-            },
-            ocean: {
-              50: '#E6F7FF', 100: '#C9EDFF', 200: '#9CDEFF', 300: '#6CCBFF', 400: '#3DB2FF',
-              500: '#1D92F0', 600: '#1373C3', 700: '#0D5593', 800: '#093A64', 900: '#06243E'
-            }
-          },
-          boxShadow: {
-            beach: '0 10px 20px rgba(6,36,62,0.08), 0 6px 6px rgba(6,36,62,0.06)'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baia Beach Cup 2x2 Misto - Calendario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
         }
-      }
-    }
-  </script>
-
-  <!-- Chart.js for small charts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif; }
-    .glass { backdrop-filter: saturate(180%) blur(10px); background: rgba(255,255,255,0.6); }
-    .dark .glass { background: rgba(17,24,39,0.6); }
-  </style>
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card-header {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .bg-friday {
+            background-color: #ffe6e6;
+        }
+        .bg-saturday {
+            background-color: #e6f7ff;
+        }
+        .bg-sunday {
+            background-color: #e6ffe6;
+        }
+    </style>
 </head>
-<body class="h-full bg-sand-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-slate-900/70 glass">
-    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-3">
-      <div class="w-9 h-9 rounded-2xl bg-ocean-500 text-white grid place-content-center shadow-beach">🏐</div>
-      <div class="flex-1">
-        <h1 class="text-xl font-extrabold leading-tight">Beach Volley Live Stats</h1>
-        <p class="text-xs text-slate-500 dark:text-slate-400 -mt-0.5">Monitoraggio in tempo reale • Torneo</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <label class="sr-only" for="tournamentSelect">Torneo</label>
-        <select id="tournamentSelect" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-          <option value="open">Open Estivo</option>
-          <option value="junior">Junior Cup</option>
-          <option value="pro">Pro Series</option>
-        </select>
-        <button id="themeToggle" class="px-3 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition shadow-beach">🌓</button>
-      </div>
+<body>
+
+    <header class="header">
+        <h1>Baia Beach Cup 2x2 Misto</h1>
+        <p>Calendario Torneo</p>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Squadre Partecipanti (Fase a Gironi)
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Girone A</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">SABBATINI-FIORETTO</li>
+                                    <li class="list-group-item">VERDINI-FERRARI</li>
+                                    <li class="list-group-item">TARSI-FELIZIANI</li>
+                                    <li class="list-group-item">CATALANI-VERZOLINI</li>
+                                    <li class="list-group-item">LATINI-CRISTOFORI</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone B</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">ESPOSTO-PALMIERI</li>
+                                    <li class="list-group-item">ANDREANELLI-ZINGARETTI</li>
+                                    <li class="list-group-item">MEDICI-CARTUCCIA</li>
+                                    <li class="list-group-item">LONGARINI-MAGINI</li>
+                                    <li class="list-group-item">SANFILIPPO-SANFILIPPO</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone C</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">MAZZARINI-CICILIANI</li>
+                                    <li class="list-group-item">CREMASCOLI-CARDINALI</li>
+                                    <li class="list-group-item">BASTIANELLI-NICOLINI</li>
+                                    <li class="list-group-item">ULIASSI-PERINI</li>
+                                    <li class="list-group-item">PANICO-PANICO</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone D</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">DOMINGUEZ-SPADONI</li>
+                                    <li class="list-group-item">ARCANGELI-CAMPOLUCCI</li>
+                                    <li class="list-group-item">MAZZANTINI-GREGANTI</li>
+                                    <li class="list-group-item">AMICI-TARSI</li>
+                                    <li class="list-group-item">DE DOMINICIS-MENICHINI</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone E</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">FREDDI-GRAIDI</li>
+                                    <li class="list-group-item">OPPIO-PASQUALINI</li>
+                                    <li class="list-group-item">BROCCOLO-PARADISI</li>
+                                    <li class="list-group-item">CESARETTI-RIPANTI</li>
+                                    <li class="list-group-item">BELVEDERESI-LUCARELLI</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone F</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">LOLLI-DONNA</li>
+                                    <li class="list-group-item">ROSSI-MOSCONI</li>
+                                    <li class="list-group-item">TIRANTI-CHIAVATTI</li>
+                                    <li class="list-group-item">GIULIANI-PAOLINELLI</li>
+                                    <li class="list-group-item">FABINI-MORO</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone G</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">BALDUCCI-EMILI</li>
+                                    <li class="list-group-item">COSTANZI-SPADONI</li>
+                                    <li class="list-group-item">ROSSI-DISCEPOLI</li>
+                                    <li class="list-group-item">POLZONETTI-MATTEI</li>
+                                    <li class="list-group-item">PASQUINELLI-STAZI</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Girone H</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">RAVELLINO-FARNETI</li>
+                                    <li class="list-group-item">GAMBERINI-CECCONI</li>
+                                    <li class="list-group-item">MENGARELLI-BARTOZZI</li>
+                                    <li class="list-group-item">ALLEGREZZA-GIRINI</li>
+                                    <li class="list-group-item">ROSSINI-URSINI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-friday">
+                Venerdì - Fase a Gironi
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ora</th>
+                            <th>Campo 7</th>
+                            <th>Campo 6</th>
+                            <th>Campo 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>17:00</td>
+                            <td>CATALANI-VERZOLINI vs VERDINI-FERRARI (A)</td>
+                            <td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td>
+                            <td>BASTIANELLI NICOLINI vs MAZZARINI CICILIANI</td>
+                        </tr>
+                        <tr>
+                            <td>17:30</td>
+                            <td>MAZZARINI-CICILIANI vs PANICO-PANICO (C)</td>
+                            <td>SABBATINI-FIORETTO vs LATINI-CRISTOFORI (A)</td>
+                            <td>BASTIANELLI vs CREMASCOLI CARDINALI</td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td>
+                            <td>LATINI-CRISTOFORI vs VERDINI-FERRARI (A)</td>
+                            <td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td>
+                        </tr>
+                        <tr>
+                            <td>18:30</td>
+                            <td>CREMASCOLI-CARDINALI vs MAZZARINI-CICILIANI (C)</td>
+                            <td>BASTIANELLI-NICOLINI vs PANICO-PANICO (C)</td>
+                            <td>SANFILIPPO-SANFILIPPO vs MEDICI-CARTUCCIA (B)</td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td>ULIASSI-PERINI vs MAZZARINI-CICILIANI (G)</td>
+                            <td>LATINI-CRISTOFORI vs TARSI-FELIZIANI (A)</td>
+                            <td>SABBATINI-FIORETTO vs CATALANI-VERZOLINI (A)</td>
+                        </tr>
+                        <tr>
+                            <td>19:30</td>
+                            <td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td>
+                            <td>VERDINI-FERRARI vs SABBATINI-FIORETTO (A)</td>
+                            <td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td>
+                            <td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td>
+                            <td>TARSI-FELIZIANI vs VERDINI-FERRARI (A)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-saturday">
+                Sabato - Fase a Gironi
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ora</th>
+                            <th>Campo 7</th>
+                            <th>Campo 6</th>
+                            <th>Campo 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>9:00</td>
+                            <td>GIULIANI-PAOLINELLI vs FABINI-MORO (F)</td>
+                            <td>LOLLI-DONNA vs TIRANTI-CHIAVATTI (F)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9:30</td>
+                            <td>MENGARELLI-BARTOZZI vs ALLEGREZZA-GIRINI (H)</td>
+                            <td>BROCCOLO-PARADISI vs OPPIO-PASQUALINI (E)</td>
+                            <td>ROSSINI-URSINI vs RAVELLINO-FARNETI (H)</td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td>CESARETTI-RIPANTI vs BELVEDERESI-LUCARELLI (E)</td>
+                            <td>PASQUINELLI-STAZI vs ROSSI-DISCEPOLI (G)</td>
+                            <td>ULIASSI-PERINI vs PANICO-PANICO (C)</td>
+                        </tr>
+                        <tr>
+                            <td>10:30</td>
+                            <td>TIRANTI-CHIAVATTI vs GIULIANI-PAOLINELLI (F)</td>
+                            <td>GAMBERINI-CECCONI vs ROSSINI-URSINI (H)</td>
+                            <td>ROSSI-MOSCONI vs LOLLI-DONNA (F)</td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td>PANICO-PANICO vs CREMASCOLI-CARDINALI (C)</td>
+                            <td>RAVELLINO-FARNETI vs ALLEGREZZA-GIRINI (H)</td>
+                            <td>ROSSI-DISCEPOLI vs POLZONETTI-MATTEI (G)</td>
+                        </tr>
+                        <tr>
+                            <td>11:30</td>
+                            <td>GIULIANI-PAOLINELLI vs LOLLI-DONNA (F)</td>
+                            <td>TIRANTI-CHIAVATTI vs FABINI-MORO (F)</td>
+                            <td>CESARETTI-RIPANTI vs BROCCOLO-PARADISI (E)</td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td>PASQUINELLI-STAZI vs POLZONETTI-MATTEI (G)</td>
+                            <td>CREMASCOLI-CARDINALI vs ULIASSI-PERINI (C)</td>
+                            <td>RAVELLINO-FARNETI vs MENGARELLI-BARTOZZI (H)</td>
+                        </tr>
+                        <tr>
+                            <td>12:30</td>
+                            <td>FABINI-MORO vs LOLLI-DONNA (F)</td>
+                            <td>ALLEGREZZA-GIRINI vs GAMBERINI-CECCONI (H)</td>
+                            <td>ROSSI-MOSCONI vs TIRANTI-CHIAVATTI (F)</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 14:30</td>
+                        </tr>
+                        <tr>
+                            <td>14:30</td>
+                            <td>ROSSINI-URSINI vs MENGARELLI-BARTOZZI (H)</td>
+                            <td>DOMINGUEZ-SPADONI vs DE DOMINICIS-MENICHINI (D)</td>
+                            <td>OPPIO-PASQUALINI vs FREDDI-GRAIDI (E)</td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td>GIULIANI-PAOLINELLI vs ROSSI-MOSCONI (F)</td>
+                            <td>DE DOMINICIS-MENICHINI vs ARCANGELI-CAMPOLUCCI (D)</td>
+                            <td>BELVEDERESI-LUCARELLI vs BROCCOLO-PARADISI (E)</td>
+                        </tr>
+                        <tr>
+                            <td>15:30</td>
+                            <td>AMICI-TARSI vs DOMINGUEZ-SPADONI (D)</td>
+                            <td>POLZONETTI-MATTEI vs COSTANZI-SPADONI (G)</td>
+                            <td>MENGARELLI-BARTOZZI vs GAMBERINI-CECCONI (H)</td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td>DE DOMINICIS-MENICHINI vs MAZZANTINI-GREGANTI (D)</td>
+                            <td>FABINI-MORO vs ROSSI-MOSCONI (F)</td>
+                            <td>OPPIO-PASQUALINI vs BELVEDERESI-LUCARELLI (E)</td>
+                        </tr>
+                        <tr>
+                            <td>16:30</td>
+                            <td>AMICI-TARSI vs DE DOMINICIS-MENICHINI (D)</td>
+                            <td>ALLEGREZZA-GIRINI vs ROSSINI-URSINI (H)</td>
+                            <td>SANFILIPPO-SANFILIPPO vs LONGARINI-MAGINI (B)</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td>POLZONETTI-MATTEI vs BALDUCCI-EMILI (G)</td>
+                            <td>BROCCOLO-PARADISI vs FREDDI-GRAIDI (E)</td>
+                            <td>PASQUINELLI-STAZI vs COSTANZI-SPADONI (G)</td>
+                        </tr>
+                        <tr>
+                            <td>17:30</td>
+                            <td>LONGARINI-MAGINI vs ESPOSTO-PALMIERI (B)</td>
+                            <td>MAZZANTINI-GREGANTI vs ARCANGELI-CAMPOLUCCI (D)</td>
+                            <td>MEDICI-CARTUCCIA vs ANDREANELLI-ZINGARETTI (B)</td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td>CESARETTI-RIPANTI vs OPPIO-PASQUALINI (E)</td>
+                            <td>BELVEDERESI-LUCARELLI vs FREDDI-GRAIDI (E)</td>
+                            <td>ROSSI-DISCEPOLI vs BALDUCCI-EMILI (G)</td>
+                        </tr>
+                        <tr>
+                            <td>18:30</td>
+                            <td>ANDREANELLI-ZINGARETTI vs LONGARINI-MAGINI (B)</td>
+                            <td>DOMINGUEZ-SPADONI vs MAZZANTINI-GREGANTI (D)</td>
+                            <td>ARCANGELI-CAMPOLUCCI vs AMICI-TARSI (D)</td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td>GAMBERINI-CECCONI vs RAVELLINO-FARNETI (H)</td>
+                            <td>ESPOSTO-PALMIERI vs SANFILIPPO-SANFILIPPO (B)</td>
+                            <td>COSTANZI-SPADONI vs BALDUCCI-EMILI (G)</td>
+                        </tr>
+                        <tr>
+                            <td>19:30</td>
+                            <td>FREDDI-GRAIDI vs CESARETTI-RIPANTI (E)</td>
+                            <td>LONGARINI-MAGINI vs MEDICI-CARTUCCIA (B)</td>
+                            <td>MAZZANTINI-GREGANTI vs AMICI-TARSI (D)</td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td>BALDUCCI-EMILI vs PASQUINELLI-STAZI (G)</td>
+                            <td>COSTANZI-SPADONI vs ROSSI-DISCEPOLI (G)</td>
+                            <td>ARCANGELI-CAMPOLUCCI vs DOMINGUEZ-SPADONI (D)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-sunday">
+                Domenica - Fasi Finali
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ora</th>
+                            <th>Campo 7</th>
+                            <th>Campo 6</th>
+                            <th>Campo 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>9:00</td>
+                            <td>1°E vs 2°F (OTT1)</td>
+                            <td>2°A vs 1°H (OTT2)</td>
+                            <td>1°D vs 2°B (OTT3)</td>
+                        </tr>
+                        <tr>
+                            <td>9:45</td>
+                            <td>2°C vs 1°G (OTT4)</td>
+                            <td>1°A vs 2°H (OTT5)</td>
+                            <td>2°E vs 1°F (OTT6)</td>
+                        </tr>
+                        <tr>
+                            <td>10:30</td>
+                            <td>1°C vs 2°G (OTT7)</td>
+                            <td>2°D vs 1°B (OTT8)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11:15</td>
+                            <td>vinc. OTT1 vs vinc. OTT2 (quarto1)</td>
+                            <td>vinc. OTT3 vs vinc. OTT4 (quarto2)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td>vinc. OTT5 vs vinc. OTT6 (quarto3)</td>
+                            <td>vinc. OTT7 vs vinc. OTT8 (quarto4)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td colspan="4" class="text-center">PAUSA PRANZO 13:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td>SEMIFINALE 1 (vinc. quarto1 vs vinc. quarto2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td>SEMIFINALE 2 (vinc. quarto3 vs vinc. quarto4)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td>3°/4° POSTO</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>18:30</td>
+                            <td>FINALISSIMA</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
-  </header>
 
-  <!-- Main -->
-  <main class="mx-auto max-w-7xl p-4 grid gap-4 lg:grid-cols-3">
-    <!-- Live Match Card -->
-    <section class="lg:col-span-2">
-      <div class="rounded-2xl bg-white dark:bg-slate-900 shadow-beach p-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-bold">Partita Live</h2>
-            <p class="text-sm text-slate-500 dark:text-slate-400">Campo <span id="liveCourt">1</span> • Best of 3 set</p>
-          </div>
-          <div class="text-right">
-            <div class="text-xs text-slate-500 dark:text-slate-400">Cronometro</div>
-            <div id="liveClock" class="font-mono text-2xl">00:00</div>
-          </div>
-        </div>
-
-        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-          <!-- Team A -->
-          <div class="rounded-xl border border-slate-100 dark:border-slate-800 p-4">
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex w-2 h-6 rounded-full bg-ocean-500" aria-hidden="true"></span>
-                <h3 id="teamAName" class="font-semibold">Rossi / Bianchi</h3>
-              </div>
-              <div class="text-4xl font-extrabold" id="teamAScore">0</div>
-            </div>
-            <div class="text-xs text-slate-500 dark:text-slate-400">Aces: <span id="teamAAces">0</span> • Blocchi: <span id="teamABlocks">0</span> • Errori: <span id="teamAErrors">0</span></div>
-          </div>
-          <!-- Team B -->
-          <div class="rounded-xl border border-slate-100 dark:border-slate-800 p-4">
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex w-2 h-6 rounded-full bg-sand-500" aria-hidden="true"></span>
-                <h3 id="teamBName" class="font-semibold">Verdi / Neri</h3>
-              </div>
-              <div class="text-4xl font-extrabold" id="teamBScore">0</div>
-            </div>
-            <div class="text-xs text-slate-500 dark:text-slate-400">Aces: <span id="teamBAces">0</span> • Blocchi: <span id="teamBBlocks">0</span> • Errori: <span id="teamBErrors">0</span></div>
-          </div>
-        </div>
-
-        <!-- Set scoreline -->
-        <div class="mt-4 flex items-center justify-between">
-          <div class="text-sm">Set: <span id="setScore" class="font-semibold">0–0</span> • Parziale set <span id="setPartial" class="font-mono">0–0</span></div>
-          <div class="text-sm">Prob. vittoria: <span id="winProb" class="font-semibold">50% – 50%</span></div>
-        </div>
-
-        <!-- Mini chart -->
-        <div class="mt-4">
-          <canvas id="momentumChart" height="60" aria-label="Andamento punteggio" role="img"></canvas>
-        </div>
-
-        <!-- Controls for demo -->
-        <div class="mt-4 flex flex-wrap gap-2">
-          <button data-add="A" class="scoreBtn px-3 py-2 rounded-xl bg-ocean-500 text-white">+1 Team A</button>
-          <button data-add="B" class="scoreBtn px-3 py-2 rounded-xl bg-sand-500 text-white">+1 Team B</button>
-          <button id="toggleDemo" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800">Avvia Demo</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Side Panel: Courts & Next Matches -->
-    <aside class="lg:col-span-1 space-y-4">
-      <div class="rounded-2xl bg-white dark:bg-slate-900 shadow-beach p-4">
-        <h2 class="text-lg font-bold mb-3">Campi</h2>
-        <div id="courtsGrid" class="grid grid-cols-2 gap-3">
-          <!-- Cards dinamici dei campi -->
-        </div>
-      </div>
-
-      <div class="rounded-2xl bg-white dark:bg-slate-900 shadow-beach p-4">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-lg font-bold">Prossime Partite</h2>
-          <input id="searchInput" type="search" placeholder="Cerca..." class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent">
-        </div>
-        <div class="overflow-auto max-h-[28rem]">
-          <table class="w-full text-sm">
-            <thead class="sticky top-0 bg-white dark:bg-slate-900">
-              <tr class="text-left text-slate-500 dark:text-slate-400">
-                <th class="py-2">Ora</th>
-                <th>Incontro</th>
-                <th>Campo</th>
-                <th>Turno</th>
-              </tr>
-            </thead>
-            <tbody id="upcomingTable"></tbody>
-          </table>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Full-width: Leaderboard & Stats -->
-    <section class="lg:col-span-3 space-y-4">
-      <div class="rounded-2xl bg-white dark:bg-slate-900 shadow-beach p-4">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-lg font-bold">Classifica Giocatori (rating live)</h2>
-          <div>
-            <label class="sr-only" for="sortSelect">Ordina</label>
-            <select id="sortSelect" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent">
-              <option value="rating">Rating</option>
-              <option value="aces">Aces</option>
-              <option value="blocks">Blocchi</option>
-              <option value="errors">Errori</option>
-            </select>
-          </div>
-        </div>
-        <div class="overflow-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="text-left text-slate-500 dark:text-slate-400">
-                <th class="py-2">Giocatore</th>
-                <th>Squadra</th>
-                <th class="text-right">Aces</th>
-                <th class="text-right">Blocchi</th>
-                <th class="text-right">Errori</th>
-                <th class="text-right">Rating</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboardBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="mx-auto max-w-7xl p-4 pb-8 text-center text-xs text-slate-500 dark:text-slate-400">
-    <p>Realizzato per GitHub Pages • Inserisci questo file come <code>index.html</code>. Collegati ad una sorgente WebSocket per aggiornamenti reali (vedi commenti nel codice).</p>
-  </footer>
-
-  <!-- Accessibility live region -->
-  <div aria-live="polite" aria-atomic="true" class="sr-only" id="srLive"></div>
-
-  <script>
-    /*************************************
-     *  SCHEMA EVENTI WEBSOCKET (ESEMPIO)
-     *  Invia oggetti JSON del tipo:
-     *  {
-     *    type: 'match_update',
-     *    payload: {
-     *      court: 1,
-     *      clock: 523, // secondi trascorsi nel set in corso
-     *      set: { a: 1, b: 0, partial: { a: 12, b: 10 } },
-     *      teams: {
-     *        A: { name: 'Rossi / Bianchi', score: 12, stats: { aces: 2, blocks: 1, errors: 3 } },
-     *        B: { name: 'Verdi / Neri',  score: 10, stats: { aces: 1, blocks: 2, errors: 4 } }
-     *      },
-     *      winProb: { A: 56, B: 44 },
-     *      momentum: [ [0,0], [1,0], [1,1], ...] // cumulativo punti nel match
-     *    }
-     *  }
-     *  Altri tipi: 'courts', 'upcoming', 'leaderboard'
-     *************************************/
-
-    const els = {
-      teamAName: document.getElementById('teamAName'),
-      teamBName: document.getElementById('teamBName'),
-      teamAScore: document.getElementById('teamAScore'),
-      teamBScore: document.getElementById('teamBScore'),
-      teamAAces: document.getElementById('teamAAces'),
-      teamABlocks: document.getElementById('teamABlocks'),
-      teamAErrors: document.getElementById('teamAErrors'),
-      teamBAces: document.getElementById('teamBAces'),
-      teamBBlocks: document.getElementById('teamBBlocks'),
-      teamBErrors: document.getElementById('teamBErrors'),
-      setScore: document.getElementById('setScore'),
-      setPartial: document.getElementById('setPartial'),
-      winProb: document.getElementById('winProb'),
-      liveClock: document.getElementById('liveClock'),
-      liveCourt: document.getElementById('liveCourt'),
-      courtsGrid: document.getElementById('courtsGrid'),
-      upcomingTable: document.getElementById('upcomingTable'),
-      leaderboardBody: document.getElementById('leaderboardBody'),
-      srLive: document.getElementById('srLive')
-    };
-
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const userPrefDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && userPrefDark)) {
-      document.documentElement.classList.add('dark');
-    }
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // Momentum chart setup
-    const ctx = document.getElementById('momentumChart').getContext('2d');
-    const momentumChart = new Chart(ctx, {
-      type: 'line',
-      data: { labels: [], datasets: [
-        { label: 'Team A', data: [], tension: 0.3, fill: false },
-        { label: 'Team B', data: [], tension: 0.3, fill: false }
-      ]},
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: { x: { display: false }, y: { beginAtZero: true, ticks: { precision: 0 } } }
-      }
-    });
-
-    function updateLiveMatch(payload) {
-      els.liveCourt.textContent = payload.court;
-      els.liveClock.textContent = toMMSS(payload.clock ?? 0);
-      els.teamAName.textContent = payload.teams.A.name;
-      els.teamBName.textContent = payload.teams.B.name;
-      els.teamAScore.textContent = payload.teams.A.score;
-      els.teamBScore.textContent = payload.teams.B.score;
-      els.teamAAces.textContent = payload.teams.A.stats.aces;
-      els.teamABlocks.textContent = payload.teams.A.stats.blocks;
-      els.teamAErrors.textContent = payload.teams.A.stats.errors;
-      els.teamBAces.textContent = payload.teams.B.stats.aces;
-      els.teamBBlocks.textContent = payload.teams.B.stats.blocks;
-      els.teamBErrors.textContent = payload.teams.B.stats.errors;
-      els.setScore.textContent = `${payload.set.a}–${payload.set.b}`;
-      els.setPartial.textContent = `${payload.set.partial.a}–${payload.set.partial.b}`;
-      els.winProb.textContent = `${payload.winProb.A}% – ${payload.winProb.B}%`;
-
-      const m = payload.momentum || [];
-      const labels = m.map((_, i) => i + 1);
-      const dataA = m.map(p => p[0]);
-      const dataB = m.map(p => p[1]);
-      momentumChart.data.labels = labels;
-      momentumChart.data.datasets[0].data = dataA;
-      momentumChart.data.datasets[1].data = dataB;
-      momentumChart.update();
-
-      announce(`${payload.teams.A.name} ${payload.teams.A.score}, ${payload.teams.B.name} ${payload.teams.B.score}`);
-    }
-
-    function renderCourts(courts) {
-      els.courtsGrid.innerHTML = '';
-      courts.forEach(c => {
-        const card = document.createElement('div');
-        card.className = 'rounded-xl border border-slate-100 dark:border-slate-800 p-3';
-        card.innerHTML = `
-          <div class="flex items-center justify-between mb-1">
-            <div class="font-semibold">Campo ${c.id}</div>
-            <div class="text-xs px-2 py-1 rounded-full ${c.status==='live' ? 'bg-ocean-100 text-ocean-700 dark:bg-ocean-800/40 dark:text-ocean-100' : 'bg-sand-100 text-sand-700 dark:bg-sand-800/40 dark:text-sand-100'}">${c.status.toUpperCase()}</div>
-          </div>
-          <div class="text-sm">${c.match || '—'}</div>
-        `;
-        els.courtsGrid.appendChild(card);
-      });
-    }
-
-    function renderUpcoming(rows) {
-      const q = (document.getElementById('searchInput').value || '').toLowerCase();
-      els.upcomingTable.innerHTML = '';
-      rows.filter(r => `${r.match} ${r.round} ${r.court}`.toLowerCase().includes(q)).forEach(r => {
-        const tr = document.createElement('tr');
-        tr.className = 'border-t border-slate-100 dark:border-slate-800';
-        tr.innerHTML = `
-          <td class="py-2 whitespace-nowrap">${r.time}</td>
-          <td class="whitespace-nowrap">${r.match}</td>
-          <td>${r.court}</td>
-          <td>${r.round}</td>
-        `;
-        els.upcomingTable.appendChild(tr);
-      });
-    }
-
-    function renderLeaderboard(players) {
-      const sortBy = document.getElementById('sortSelect').value;
-      const sorted = [...players].sort((a,b) => (b[sortBy] ?? 0) - (a[sortBy] ?? 0));
-      els.leaderboardBody.innerHTML = '';
-      sorted.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.className = 'border-t border-slate-100 dark:border-slate-800';
-        tr.innerHTML = `
-          <td class="py-2">${p.name}</td>
-          <td>${p.team}</td>
-          <td class="text-right">${p.aces}</td>
-          <td class="text-right">${p.blocks}</td>
-          <td class="text-right">${p.errors}</td>
-          <td class="text-right font-semibold">${p.rating.toFixed(1)}</td>
-        `;
-        els.leaderboardBody.appendChild(tr);
-      });
-    }
-
-    // Helpers
-    function toMMSS(s) { const m = Math.floor(s/60).toString().padStart(2,'0'); const r = (s%60).toString().padStart(2,'0'); return `${m}:${r}`; }
-    function announce(text){ els.srLive.textContent = text; }
-
-    // --- DEMO MODE (puoi rimuovere/integrare con WebSocket reale) ---
-    const demo = {
-      on: false,
-      interval: null,
-      state: {
-        court: 1,
-        clock: 0,
-        set: { a: 0, b: 0, partial: { a: 0, b: 0 } },
-        teams: {
-          A: { name: 'Rossi / Bianchi', score: 0, stats: { aces: 0, blocks: 0, errors: 0 } },
-          B: { name: 'Verdi / Neri', score: 0, stats: { aces: 0, blocks: 0, errors: 0 } }
-        },
-        winProb: { A: 50, B: 50 },
-        momentum: []
-      },
-      tick(){
-        const scorer = Math.random() < 0.5 ? 'A' : 'B';
-        this.state.teams[scorer].score++;
-        this.state.set.partial[scorer.toLowerCase()]++;
-        this.state.clock += Math.floor(Math.random()*7)+4;
-        // random stats
-        const r = Math.random();
-        if(r < 0.1) this.state.teams[scorer].stats.aces++;
-        else if(r < 0.18) this.state.teams[scorer].stats.blocks++;
-        else if(r < 0.28) this.state.teams[scorer].stats.errors++;
-        // win prob naive
-        const total = this.state.teams.A.score + this.state.teams.B.score + 1;
-        this.state.winProb.A = Math.round((this.state.teams.A.score/total)*100);
-        this.state.winProb.B = 100 - this.state.winProb.A;
-        // momentum
-        this.state.momentum.push([this.state.teams.A.score, this.state.teams.B.score]);
-
-        // set finished at 21, 2 points difference
-        const a = this.state.teams.A.score, b = this.state.teams.B.score;
-        if ((a>=21 || b>=21) && Math.abs(a-b)>=2){
-          if(a>b) this.state.set.a++; else this.state.set.b++;
-          this.state.teams.A.score = 0; this.state.teams.B.score = 0;
-          this.state.set.partial = { a: 0, b: 0 };
-        }
-        updateLiveMatch(this.state);
-      },
-      start(){ if(this.interval) return; this.on = true; this.interval = setInterval(()=>this.tick(), 1200); },
-      stop(){ this.on = false; clearInterval(this.interval); this.interval = null; }
-    };
-
-    // demo controls
-    document.querySelectorAll('.scoreBtn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const who = btn.getAttribute('data-add');
-        demo.state.teams[who].score++;
-        demo.state.set.partial[who.toLowerCase()]++;
-        demo.state.momentum.push([demo.state.teams.A.score, demo.state.teams.B.score]);
-        updateLiveMatch(demo.state);
-      });
-    });
-    document.getElementById('toggleDemo').addEventListener('click', (e) => {
-      if(demo.on){ demo.stop(); e.target.textContent = 'Avvia Demo'; }
-      else { demo.start(); e.target.textContent = 'Ferma Demo'; }
-    });
-
-    // Seed UI
-    updateLiveMatch(demo.state);
-    renderCourts([
-      { id: 1, status: 'live', match: 'Rossi/Bianchi vs Verdi/Neri' },
-      { id: 2, status: 'idle', match: '—' },
-      { id: 3, status: 'idle', match: '—' },
-      { id: 4, status: 'idle', match: '—' },
-    ]);
-    renderUpcoming([
-      { time: '10:30', match: 'Gialli/Azzurri vs Blu/Arancio', court: '2', round: 'Quarti' },
-      { time: '11:15', match: 'Rosa/Grigi vs Viola/Marroni', court: '3', round: 'Quarti' },
-      { time: '12:00', match: 'Semifinale 1', court: '1', round: 'Semi' },
-      { time: '12:45', match: 'Semifinale 2', court: '1', round: 'Semi' },
-      { time: '13:30', match: 'Finale', court: '1', round: 'Finale' },
-    ]);
-    renderLeaderboard([
-      { name: 'Rossi', team: 'Rossi/Bianchi', aces: 4, blocks: 2, errors: 3, rating: 92.4 },
-      { name: 'Bianchi', team: 'Rossi/Bianchi', aces: 2, blocks: 1, errors: 4, rating: 88.2 },
-      { name: 'Verdi', team: 'Verdi/Neri', aces: 3, blocks: 3, errors: 2, rating: 90.1 },
-      { name: 'Neri', team: 'Verdi/Neri', aces: 1, blocks: 4, errors: 5, rating: 85.6 },
-    ]);
-
-    document.getElementById('searchInput').addEventListener('input', () => renderUpcoming([
-      { time: '10:30', match: 'Gialli/Azzurri vs Blu/Arancio', court: '2', round: 'Quarti' },
-      { time: '11:15', match: 'Rosa/Grigi vs Viola/Marroni', court: '3', round: 'Quarti' },
-      { time: '12:00', match: 'Semifinale 1', court: '1', round: 'Semi' },
-      { time: '12:45', match: 'Semifinale 2', court: '1', round: 'Semi' },
-      { time: '13:30', match: 'Finale', court: '1', round: 'Finale' },
-    ]));
-
-    document.getElementById('sortSelect').addEventListener('change', () => renderLeaderboard([
-      { name: 'Rossi', team: 'Rossi/Bianchi', aces: 4, blocks: 2, errors: 3, rating: 92.4 },
-      { name: 'Bianchi', team: 'Rossi/Bianchi', aces: 2, blocks: 1, errors: 4, rating: 88.2 },
-      { name: 'Verdi', team: 'Verdi/Neri', aces: 3, blocks: 3, errors: 2, rating: 90.1 },
-      { name: 'Neri', team: 'Verdi/Neri', aces: 1, blocks: 4, errors: 5, rating: 85.6 },
-    ]));
-
-    // --- Collegamento WebSocket reale (facoltativo) ---
-    // Sostituisci "wss://example.com/live" con il tuo endpoint
-    // const ws = new WebSocket('wss://example.com/live');
-    // ws.addEventListener('open', () => console.log('WS connesso'));
-    // ws.addEventListener('message', (msg) => {
-    //   try {
-    //     const event = JSON.parse(msg.data);
-    //     switch(event.type){
-    //       case 'match_update': updateLiveMatch(event.payload); break;
-    //       case 'courts': renderCourts(event.payload); break;
-    //       case 'upcoming': renderUpcoming(event.payload); break;
-    //       case 'leaderboard': renderLeaderboard(event.payload); break;
-    //     }
-    //   } catch(e){ console.error('Errore WS', e); }
-    // });
-    // ws.addEventListener('close', () => console.warn('WS chiuso'));
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
