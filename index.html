@@ -11,7 +11,7 @@
             background-color: #f0f2f5;
             color: #212529;
             font-family: 'Poppins', sans-serif;
-            background: url('BBC-017.jpeg');
+            background-image: url('MAT237 (1).jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -24,6 +24,12 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .container {
             margin-top: 20px;
@@ -94,21 +100,21 @@
                 font-size: 0.9rem;
             }
             .card-body {
-                padding: 8px;
+                padding: 5px;
             }
             .list-group-item {
-                font-size: 0.8rem;
-                padding: 8px 10px;
+                font-size: 0.75rem;
+                padding: 6px 8px;
             }
             .table th, .table td {
-                padding: 4px;
-                font-size: 0.7rem;
+                padding: 3px;
+                font-size: 0.65rem;
             }
             .row > div[class*="col-"] {
-                padding: 4px;
+                padding: 2px;
             }
             .card-title {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -116,7 +122,7 @@
 <body>
 
     <header class="header">
-        <h1>Baia Beach Cup 2x2 Misto</h1>
+        <img src="INDIRIZZO_DELLA_TUA_IMMAGINE.png" alt="Baia Beach Cup Logo">
         <p>Calendario del Torneo</p>
     </header>
 
@@ -131,7 +137,7 @@
                                 <h5 class="card-title">Girone A</h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">SABBATINI-FIORETTO</li>
-                                    <li class="list-group-item">FARINELLI-FARINELLI</li>
+                                    <li class="list-group-item">VERDINI-FERRARI</li>
                                     <li class="list-group-item">TARSI-FELIZIANI</li>
                                     <li class="list-group-item">CATALANI-VERZOLINI</li>
                                     <li class="list-group-item">LATINI-CRISTOFORI</li>
@@ -223,6 +229,14 @@
         </div>
 
         <div class="card mb-4">
+            <div class="card-header">Tabellone Finale</div>
+            <div class="card-body">
+                <div id="final-bracket-container" class="table-responsive">
+                    </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
             <div class="card-header bg-friday">
                 Venerdì - Fase a Gironi
             </div>
@@ -238,13 +252,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>17:00</td><td>CATALANI-VERZOLINI vs FARINELLI-FARINELLI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
+                            <tr><td>17:00</td><td>CATALANI-VERZOLINI vs VERDINI-FERRARI (A)</td><td>TARSI-FELIZIANI vs SABBATINI-FIORETTO (A)</td><td>BASTIANELLI-NICOLINI vs MAZZARINI-CICILIANI (C)</td></tr>
                             <tr><td>17:30</td><td>MAZZARINI-CICILIANI vs PANICO-PANICO (C)</td><td>SABBATINI-FIORETTO vs LATINI-CRISTOFORI (A)</td><td>BASTIANELLI-NICOLINI vs CREMASCOLI-CARDINALI (C)</td></tr>
-                            <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs FARINELLI-FARINELLI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
+                            <tr><td>18:00</td><td>TARSI-FELIZIANI vs CATALANI-VERZOLINI (A)</td><td>LATINI-CRISTOFORI vs VERDINI-FERRARI (A)</td><td>ESPOSTO-PALMIERI vs ANDREANELLI-ZINGARETTI (B)</td></tr>
                             <tr><td>18:30</td><td>CREMASCOLI-CARDINALI vs MAZZARINI-CICILIANI (C)</td><td>BASTIANELLI-NICOLINI vs PANICO-PANICO (C)</td><td>SANFILIPPO-SANFILIPPO vs MEDICI-CARTUCCIA (B)</td></tr>
                             <tr><td>19:00</td><td>ULIASSI-PERINI vs MAZZARINI-CICILIANI (G)</td><td>LATINI-CRISTOFORI vs TARSI-FELIZIANI (A)</td><td>SABBATINI-FIORETTO vs CATALANI-VERZOLINI (A)</td></tr>
-                            <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>FARINELLI-FARINELLI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
-                            <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs FARINELLI-FARINELLI (A)</td></tr>
+                            <tr><td>19:30</td><td>ANDREANELLI-ZINGARETTI vs SANFILIPPO-SANFILIPPO (B)</td><td>VERDINI-FERRARI vs SABBATINI-FIORETTO (A)</td><td>MEDICI-CARTUCCIA vs ESPOSTO-PALMIERI (B)</td></tr>
+                            <tr><td>20:00</td><td>ULIASSI-PERINI vs BASTIANELLI-NICOLINI (C)</td><td>CATALANI-VERZOLINI vs LATINI-CRISTOFORI (A)</td><td>TARSI-FELIZIANI vs VERDINI-FERRARI (A)</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -333,7 +347,7 @@
             return {
                 'Girone A': [
                     { team: 'SABBATINI-FIORETTO', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
-                    { team: 'FARINELLI-FARINELLI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
+                    { team: 'VERDINI-FERRARI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
                     { team: 'TARSI-FELIZIANI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
                     { team: 'CATALANI-VERZOLINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 },
                     { team: 'LATINI-CRISTOFORI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0 }
@@ -406,7 +420,7 @@
                                                 <th>Squadra</th>
                                                 <th>P</th>
                                                 <th>V</th>
-                                                <th>P</th>
+                                                <th>L</th>
                                             </tr>
                                         </thead>
                                         <tbody>
