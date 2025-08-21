@@ -25,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(240, 242, 245, 0.6);
+            background-color: rgba(240, 242, 245, 0.3); /* Valore di trasparenza ridotto a 0.3 */
             z-index: -1;
         }
 
@@ -159,6 +159,7 @@
 
     <header class="header">
         <img src="658A764D-94EF-4B30-8D67-D453A3C962B2.jpeg" alt="Baia Beach Cup Logo">
+        <p>Calendario del Torneo</p>
     </header>
 
     <div class="container">
@@ -342,10 +343,18 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
-                        <tbody>
+                        <thead>
                             <tr>
-                                <td colspan="4" class="text-center">Fasi finali da definire</td>
+                                <th>Ora</th>
+                                <th>Partita</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>9:00</td><td>Ottavi di Finale</td></tr>
+                            <tr><td>10:00</td><td>Quarti di Finale</td></tr>
+                            <tr><td>11:00</td><td>Semifinali</td></tr>
+                            <tr><td>11:45</td><td>3° e 4° Posto</td></tr>
+                            <tr><td>12:15</td><td>Finalissima</td></tr>
                         </tbody>
                     </table>
                 </div>
