@@ -429,7 +429,7 @@
                 { team: 'GAMBERINI-CECCONI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-h' },
                 { team: 'MENGARELLI-BARTOZZI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-h' },
                 { team: 'ALLEGREZZA-GIRINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-h' },
-                { team: 'ROSSINI-URSINI', score: 0, wins: 0, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-h' }
+                { team: 'ROSSINI-URSINI', score: 0, wins: 0, losses: 0, colorClass: 'color-h' }
             ]
         };
     }
@@ -438,7 +438,9 @@
         const container = document.getElementById('group-standings-container');
         const standings = getGroupStandings();
 
-        // Ordina le squadre in ogni girone per punteggio (dal più alto al più basso)
+        // Coppie da evidenziare in grassetto
+        const highlightedTeams = ['TARSI-FELIZIANI', 'CATALANI-VERZOLINI', 'MAZZARINI-CICILIANI'];
+
         Object.keys(standings).forEach(groupName => {
             standings[groupName].sort((a, b) => b.score - a.score);
         });
@@ -460,14 +462,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        ${standings[groupName].map(team => `
-                                            <tr class="${team.colorClass} ${team.colorClass.includes('dark-text') ? 'dark-text' : ''}">
-                                                <td>${team.team}</td>
-                                                <td>${team.score}</td>
-                                                <td>${team.wins}</td>
-                                                <td>${team.losses}</td>
-                                            </tr>
-                                        `).join('')}
+                                        ${standings[groupName].map(team => {
+                                            const isHighlighted = highlightedTeams.includes(team.team);
+                                            const teamName = isHighlighted ? `<b>${team.team}</b>` : team.team;
+                                            const darkTextClass = team.colorClass.includes('dark-text') ? 'dark-text' : '';
+                                            return `
+                                                <tr class="${team.colorClass} ${darkTextClass}">
+                                                    <td>${teamName}</td>
+                                                    <td>${team.score}</td>
+                                                    <td>${team.wins}</td>
+                                                    <td>${team.losses}</td>
+                                                </tr>
+                                            `;
+                                        }).join('')}
                                     </tbody>
                                 </table>
                             </div>
@@ -501,6 +508,7 @@
 
     renderGroupStandings();
     renderFinalBracket();
+</script>
 </script>
     </script>
 </body>
