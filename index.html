@@ -412,13 +412,13 @@
             ],
             'Girone F': [
                 { team: 'LOLLI-DONNA', score: 3, wins: 1, losses: 3, setsWon: 0, setsLost: 0, colorClass: 'color-f' },
-                { team: 'ROSSI-BELOGI', score: 0, wins: 0, losses: 4, setsWon: 0, setsLost: 0, colorClass: 'color-f' },
+                { team: 'ROSSI-MOSCONI', score: 0, wins: 0, losses: 4, setsWon: 0, setsLost: 0, colorClass: 'color-f' },
                 { team: 'TIRANTI-CHIAVATTI', score: 12, wins: 4, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-f' },
                 { team: 'GIULIANI-PAOLINELLI', score: 9, wins: 3, losses: 1, setsWon: 0, setsLost: 0, colorClass: 'color-f' },
                 { team: 'FABINI-MORO', score: 6, wins: 2, losses: 2, setsWon: 0, setsLost: 0, colorClass: 'color-f' }
             ],
             'Girone G': [
-                { team: 'BALDUCCI-EMILI', score: 12, wins: 4, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-g dark-text' }
+                { team: 'BALDUCCI-EMILI', score: 12, wins: 4, losses: 0, setsWon: 0, setsLost: 0, colorClass: 'color-g dark-text' },
                 { team: 'COSTANZI-SPADONI', score: 3, wins: 1, losses: 3, setsWon: 0, setsLost: 0, colorClass: 'color-g dark-text' },
                 { team: 'ROSSI-DISCEPOLI', score: 0, wins: 0, losses: 4, setsWon: 0, setsLost: 0, colorClass: 'color-g dark-text' },
                 { team: 'POLZONETTI-MATTEI', score: 6, wins: 2, losses: 2, setsWon: 0, setsLost: 0, colorClass: 'color-g dark-text' },
@@ -438,10 +438,8 @@
         const container = document.getElementById('group-standings-container');
         const standings = getGroupStandings();
 
-        // Coppie da evidenziare in grassetto
-        const highlightedTeams = ['TARSI-FELIZIANI', 'CATALANI-VERZOLINI', 'MAZZARINI-CICILIANI'];
-
         Object.keys(standings).forEach(groupName => {
+            // Ordina la classifica in base al punteggio (dal più alto al più basso)
             standings[groupName].sort((a, b) => b.score - a.score);
         });
 
@@ -462,8 +460,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        ${standings[groupName].map(team => {
-                                            const isHighlighted = highlightedTeams.includes(team.team);
+                                        ${standings[groupName].map((team, index) => {
+                                            // Metti in grassetto solo le prime due squadre (indice 0 e 1)
+                                            const isHighlighted = index < 2;
                                             const teamName = isHighlighted ? `<b>${team.team}</b>` : team.team;
                                             const darkTextClass = team.colorClass.includes('dark-text') ? 'dark-text' : '';
                                             return `
@@ -508,6 +507,7 @@
 
     renderGroupStandings();
     renderFinalBracket();
+</script>
 </script>
 </script>
     </script>
