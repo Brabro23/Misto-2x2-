@@ -441,7 +441,7 @@
         const standings = getGroupStandings();
 
         Object.keys(standings).forEach(groupName => {
-            // Ordina la classifica in base al punteggio (dal più alto al più basso)
+            
             standings[groupName].sort((a, b) => b.score - a.score);
         });
 
@@ -463,7 +463,7 @@
                                     </thead>
                                     <tbody>
                                         ${standings[groupName].map((team, index) => {
-                                            // Metti in grassetto solo le prime due squadre (indice 0 e 1)
+                                           
                                             const isHighlighted = index < 2;
                                             const teamName = isHighlighted ? `<b>${team.team}</b>` : team.team;
                                             const darkTextClass = team.colorClass.includes('dark-text') ? 'dark-text' : '';
@@ -509,9 +509,6 @@
 
     renderGroupStandings();
     renderFinalBracket();
-</script>
-</script>
-</script>
     </script>
 </body>
 </html>
